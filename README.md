@@ -25,21 +25,6 @@ A comprehensive design system built on [W3C Design Tokens Community Group (DTCG)
 | `src/primitives/` | React primitives (Box, Grid, Stack, Inline, Text) that consume the tokens |
 | `stories/` | Storybook stories for visualizing and documenting every token |
 
-## Getting started
-
-```bash
-npm install
-npm run storybook
-```
-
-Storybook will start on `http://localhost:6006` with interactive documentation for all tokens and primitives.
-
-## Using with V0 or similar AI tools
-
-1. Push this repo to GitHub.
-2. In your V0 project, go to **Settings > Design System** and point it at this repo.
-3. V0 will read `v0/v0-context.md` for instructions and include `v0/globals.css` in generated code.
-
 ## Prompt for AI tools
 
 Copy and paste the prompt below into V0, ChatGPT, Claude, or any AI coding assistant to give it full context on how to use these design tokens. Adjust the repo URL to match your own.
@@ -50,9 +35,9 @@ Copy and paste the prompt below into V0, ChatGPT, Claude, or any AI coding assis
 >
 > Here is how to find what you need:
 >
-> 1. **CSS variables file** — import `v0/globals.css` at the root of the project. This file contains every design token as a CSS custom property (colors, spacing, typography, borders, shadows, transitions, z-index, breakpoints).
+> 1. **CSS variables file** — import `https://github.com/paulfeltoe/design-tokens/blob/main/v0/globals.css` at the root of the project. This file contains every design token as a CSS custom property (colors, spacing, typography, borders, shadows, transitions, z-index, breakpoints).
 >
-> 2. **Full usage guide** — read `v0/v0-context.md` for detailed instructions on every token category, which values to use and when, typography presets, and the 10 rules you must follow.
+> 2. **Full usage guide** — read `https://github.com/paulfeltoe/design-tokens/blob/main/v0/v0-context.md` for detailed instructions on every token category, which values to use and when, typography presets, and the 10 rules you must follow.
 >
 > 3. **Token source (DTCG format)** — if you need raw token values or want to understand the structure, read `design-tokens.json` in the project root. It uses the W3C Design Tokens Community Group format.
 >
