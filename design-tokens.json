@@ -11,6 +11,7 @@
     },
     "gray": {
       "100": { "$type": "color", "$value": "#F4F4F2", "$description": "Smoke — hover backgrounds, subtle fills" },
+      "150": { "$type": "color", "$value": "#D8D8D6", "$description": "Mid-light warm gray — fills, alternating rows" },
       "200": { "$type": "color", "$value": "#BCBCBA", "$description": "Silver — disabled buttons (both modes)" },
       "300": { "$type": "color", "$value": "#A0A09E", "$description": "Dark Cement — added for contrast" },
       "400": { "$type": "color", "$value": "#8E8E8C", "$description": "Cement — added for contrast" },
@@ -271,14 +272,14 @@
     }
   },
   "shadow": {
-    "none": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "0px", "color": "rgba(0, 0, 0, 0)" } },
-    "sm": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px", "color": "rgba(0, 0, 0, 0.05)" } },
-    "base": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "1px", "blur": "3px", "spread": "0px", "color": "rgba(0, 0, 0, 0.1)" } },
-    "md": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "4px", "blur": "6px", "spread": "-1px", "color": "rgba(0, 0, 0, 0.1)" } },
-    "lg": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "10px", "blur": "15px", "spread": "-3px", "color": "rgba(0, 0, 0, 0.1)" } },
-    "xl": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "20px", "blur": "25px", "spread": "-5px", "color": "rgba(0, 0, 0, 0.1)" } },
-    "2xl": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "25px", "blur": "50px", "spread": "-12px", "color": "rgba(0, 0, 0, 0.25)" } },
-    "inner": { "$type": "shadow", "$value": { "inset": true, "offsetX": "0px", "offsetY": "2px", "blur": "4px", "spread": "0px", "color": "rgba(0, 0, 0, 0.06)" } }
+    "none": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "0px", "color": "rgba(33, 32, 32, 0)" } },
+    "sm": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px", "color": "rgba(33, 32, 32, 0.05)" } },
+    "base": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "1px", "blur": "3px", "spread": "0px", "color": "rgba(33, 32, 32, 0.1)" } },
+    "md": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "4px", "blur": "6px", "spread": "-1px", "color": "rgba(33, 32, 32, 0.1)" } },
+    "lg": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "10px", "blur": "15px", "spread": "-3px", "color": "rgba(33, 32, 32, 0.1)" } },
+    "xl": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "20px", "blur": "25px", "spread": "-5px", "color": "rgba(33, 32, 32, 0.1)" } },
+    "2xl": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "25px", "blur": "50px", "spread": "-12px", "color": "rgba(33, 32, 32, 0.25)" } },
+    "inner": { "$type": "shadow", "$value": { "inset": true, "offsetX": "0px", "offsetY": "2px", "blur": "4px", "spread": "0px", "color": "rgba(33, 32, 32, 0.06)" } }
   },
   "transition": {
     "duration": {
