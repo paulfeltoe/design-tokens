@@ -275,7 +275,7 @@
     "xl": { "$type": "dimension", "$value": "1280px" },
     "2xl": { "$type": "dimension", "$value": "1536px" }
   },
-  "zIndex": {
+  "z-index": {
     "base": { "$type": "number", "$value": 0 },
     "dropdown": { "$type": "number", "$value": 1000 },
     "sticky": { "$type": "number", "$value": 1100 },
