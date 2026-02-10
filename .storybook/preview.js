@@ -1,6 +1,6 @@
-import "../globals.css";
+import "../v0/globals.css";
 
-/** @type { import('@storybook/html-vite').Preview } */
+/** @type { import('@storybook/react-vite').Preview } */
 const preview = {
   parameters: {
     layout: "fullscreen",
