@@ -171,9 +171,9 @@
   },
   "font": {
     "family": {
-      "sans": { "$type": "fontFamily", "$value": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" },
-      "serif": { "$type": "fontFamily", "$value": "Georgia, Cambria, 'Times New Roman', Times, serif" },
-      "mono": { "$type": "fontFamily", "$value": "'Fira Code', Consolas, Monaco, 'Courier New', monospace" }
+      "sans": { "$type": "fontFamily", "$value": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"] },
+      "serif": { "$type": "fontFamily", "$value": ["Georgia", "Cambria", "Times New Roman", "Times", "serif"] },
+      "mono": { "$type": "fontFamily", "$value": ["Fira Code", "Consolas", "Monaco", "Courier New", "monospace"] }
     },
     "size": {
       "xs": { "$type": "dimension", "$value": "12px" },
@@ -234,14 +234,14 @@
     }
   },
   "shadow": {
-    "none": { "$type": "shadow", "$value": "0px 0px 0px 0px rgba(0, 0, 0, 0)" },
-    "sm": { "$type": "shadow", "$value": "0px 1px 2px 0px rgba(0, 0, 0, 0.05)" },
-    "base": { "$type": "shadow", "$value": "0px 1px 3px 0px rgba(0, 0, 0, 0.1)" },
-    "md": { "$type": "shadow", "$value": "0px 4px 6px -1px rgba(0, 0, 0, 0.1)" },
-    "lg": { "$type": "shadow", "$value": "0px 10px 15px -3px rgba(0, 0, 0, 0.1)" },
-    "xl": { "$type": "shadow", "$value": "0px 20px 25px -5px rgba(0, 0, 0, 0.1)" },
-    "2xl": { "$type": "shadow", "$value": "0px 25px 50px -12px rgba(0, 0, 0, 0.25)" },
-    "inner": { "$type": "shadow", "$value": "inset 0px 2px 4px 0px rgba(0, 0, 0, 0.06)" }
+    "none": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "0px", "color": "rgba(0, 0, 0, 0)" } },
+    "sm": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px", "color": "rgba(0, 0, 0, 0.05)" } },
+    "base": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "1px", "blur": "3px", "spread": "0px", "color": "rgba(0, 0, 0, 0.1)" } },
+    "md": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "4px", "blur": "6px", "spread": "-1px", "color": "rgba(0, 0, 0, 0.1)" } },
+    "lg": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "10px", "blur": "15px", "spread": "-3px", "color": "rgba(0, 0, 0, 0.1)" } },
+    "xl": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "20px", "blur": "25px", "spread": "-5px", "color": "rgba(0, 0, 0, 0.1)" } },
+    "2xl": { "$type": "shadow", "$value": { "offsetX": "0px", "offsetY": "25px", "blur": "50px", "spread": "-12px", "color": "rgba(0, 0, 0, 0.25)" } },
+    "inner": { "$type": "shadow", "$value": { "inset": true, "offsetX": "0px", "offsetY": "2px", "blur": "4px", "spread": "0px", "color": "rgba(0, 0, 0, 0.06)" } }
   },
   "transition": {
     "duration": {
@@ -253,11 +253,11 @@
       "slower": { "$type": "duration", "$value": "700ms" }
     },
     "easing": {
-      "linear": { "$type": "cubicBezier", "$value": "cubic-bezier(0, 0, 1, 1)" },
-      "ease": { "$type": "cubicBezier", "$value": "cubic-bezier(0.25, 0.1, 0.25, 1)" },
-      "ease-in": { "$type": "cubicBezier", "$value": "cubic-bezier(0.42, 0, 1, 1)" },
-      "ease-out": { "$type": "cubicBezier", "$value": "cubic-bezier(0, 0, 0.58, 1)" },
-      "ease-in-out": { "$type": "cubicBezier", "$value": "cubic-bezier(0.42, 0, 0.58, 1)" }
+      "linear": { "$type": "cubicBezier", "$value": [0, 0, 1, 1] },
+      "ease": { "$type": "cubicBezier", "$value": [0.25, 0.1, 0.25, 1] },
+      "ease-in": { "$type": "cubicBezier", "$value": [0.42, 0, 1, 1] },
+      "ease-out": { "$type": "cubicBezier", "$value": [0, 0, 0.58, 1] },
+      "ease-in-out": { "$type": "cubicBezier", "$value": [0.42, 0, 0.58, 1] }
     }
   },
   "opacity": {
