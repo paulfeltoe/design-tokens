@@ -1,6 +1,6 @@
 import React from 'react';
 import tokens from '../design-tokens.json';
-import { PageHeader, Section, Tip, CodeBlock, UsageTable } from './shared/DocBlock';
+import { PageHeader, Section, Tip, CodeBlock } from './shared/DocBlock';
 
 export default {
   title: 'Design Tokens/Borders',
@@ -13,22 +13,24 @@ export const BorderWidths = () => (
       description="A small set of border widths keeps your UI consistent. Thin for most cases, medium for emphasis and focus, thick for strong visual anchors."
     />
 
-    <UsageTable
-      rows={[
-        ['border-width-none (0px)', 'Remove borders entirely (e.g. elevated cards that rely on shadow)'],
-        ['border-width-thin (1px)', 'Default borders, dividers, form inputs, table cells'],
-        ['border-width-medium (2px)', 'Focus rings, active tab indicators, emphasized separators'],
-        ['border-width-thick (4px)', 'Decorative accents, left-border callouts, branding elements'],
-      ]}
-    />
-
-    {Object.entries(tokens.border.width).map(([key, token]) => (
-      <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-        <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 180 }}>border-width-{key}</div>
-        <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 40 }}>{token.$value}</div>
-        <div style={{ width: 120, height: 48, border: `${token.$value} solid #171717`, borderRadius: 4 }} />
-      </div>
-    ))}
+    {(() => {
+      const usageNotes = {
+        'none': 'Remove borders entirely (e.g. elevated cards that rely on shadow)',
+        'thin': 'Default borders, dividers, form inputs, table cells',
+        'medium': 'Focus rings, active tab indicators, emphasized separators',
+        'thick': 'Decorative accents, left-border callouts, branding elements',
+      };
+      return Object.entries(tokens.border.width).map(([key, token]) => (
+        <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+          <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 180 }}>border-width-{key}</div>
+          <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 40 }}>{token.$value}</div>
+          <div style={{ width: 120, height: 48, border: `${token.$value} solid #171717`, borderRadius: 4 }} />
+          {usageNotes[key] && (
+            <div style={{ fontSize: 12, color: '#a3a3a3' }}>{usageNotes[key]}</div>
+          )}
+        </div>
+      ));
+    })()}
 
     <Section title="Usage">
       <CodeBlock
@@ -61,25 +63,27 @@ export const BorderRadius = () => (
       Reserve <strong>full (9999px)</strong> for pills, avatars, and circular icons.
     </Tip>
 
-    <UsageTable
-      rows={[
-        ['border-radius-none (0px)', 'Sharp corners, table cells, utility elements'],
-        ['border-radius-sm (4px)', 'Small elements: badges, chips, tags'],
-        ['border-radius-base (8px)', 'Default: buttons, cards, inputs, dropdowns'],
-        ['border-radius-md (12px)', 'Larger cards, image containers'],
-        ['border-radius-lg (16px)', 'Modals, dialogs, hero images'],
-        ['border-radius-xl (24px)', 'Feature cards, marketing sections'],
-        ['border-radius-full (9999px)', 'Pill buttons, avatars, status indicators'],
-      ]}
-    />
-
-    {Object.entries(tokens.border.radius).map(([key, token]) => (
-      <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-        <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 180 }}>border-radius-{key}</div>
-        <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 60 }}>{token.$value}</div>
-        <div style={{ width: 64, height: 64, backgroundColor: '#3b82f6', borderRadius: token.$value }} />
-      </div>
-    ))}
+    {(() => {
+      const usageNotes = {
+        'none': 'Sharp corners, table cells, utility elements',
+        'sm': 'Small elements: badges, chips, tags',
+        'base': 'Default: buttons, cards, inputs, dropdowns',
+        'md': 'Larger cards, image containers',
+        'lg': 'Modals, dialogs, hero images',
+        'xl': 'Feature cards, marketing sections',
+        'full': 'Pill buttons, avatars, status indicators',
+      };
+      return Object.entries(tokens.border.radius).map(([key, token]) => (
+        <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+          <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 180 }}>border-radius-{key}</div>
+          <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 60 }}>{token.$value}</div>
+          <div style={{ width: 64, height: 64, backgroundColor: '#3b82f6', borderRadius: token.$value }} />
+          {usageNotes[key] && (
+            <div style={{ fontSize: 12, color: '#a3a3a3' }}>{usageNotes[key]}</div>
+          )}
+        </div>
+      ));
+    })()}
 
     <Section title="Usage">
       <CodeBlock

@@ -1,6 +1,6 @@
 import React from 'react';
 import tokens from '../design-tokens.json';
-import { PageHeader, Section, Tip, Warning, CodeBlock, UsageTable } from './shared/DocBlock';
+import { PageHeader, Section, Tip, Warning, CodeBlock } from './shared/DocBlock';
 
 export default {
   title: 'Design Tokens/Shadows',
@@ -19,44 +19,50 @@ export const ShadowScale = () => (
       description="Shadows communicate elevation and hierarchy. Higher elevation = more important or interactive. Use sparingly and increase on hover to indicate interactivity."
     />
 
-    <UsageTable
-      rows={[
-        ['shadow-none', 'Flat elements, disabled states, outlined components'],
-        ['shadow-sm', 'Subtle lift on hover, small cards, form inputs'],
-        ['shadow-base', 'Default cards, contained buttons'],
-        ['shadow-md', 'Dropdowns, tooltips, popovers, floating menus'],
-        ['shadow-lg', 'Modals, drawers, sticky navigation'],
-        ['shadow-xl', 'Dialogs, important overlays, sticky headers'],
-        ['shadow-2xl', 'Maximum elevation: hero elements, dramatic layering'],
-        ['shadow-inner', 'Inset/pressed states: active buttons, input wells'],
-      ]}
-    />
-
     <Tip>
       <strong>Interactive pattern:</strong> Start at <code>shadow-base</code>, increase to <code>shadow-lg</code> on hover, and drop to <code>shadow-sm</code> or <code>shadow-inner</code> on active/press.
     </Tip>
 
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 32 }}>
-      {Object.entries(tokens.shadow).map(([key, token]) => {
-        const css = shadowToCSS(token.$value);
-        return (
-          <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-            <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 140 }}>shadow-{key}</div>
-            <div
-              style={{
-                width: 120,
-                height: 64,
-                backgroundColor: '#ffffff',
-                borderRadius: 8,
-                boxShadow: css,
-                border: key === 'none' ? '1px solid #e5e5e5' : 'none',
-              }}
-            />
-            <div style={{ fontFamily: 'monospace', fontSize: 11, color: '#a3a3a3', maxWidth: 320 }}>{css}</div>
-          </div>
-        );
-      })}
-    </div>
+    {(() => {
+      const usageNotes = {
+        'none': 'Flat elements, disabled states, outlined components',
+        'sm': 'Subtle lift on hover, small cards, form inputs',
+        'base': 'Default cards, contained buttons',
+        'md': 'Dropdowns, tooltips, popovers, floating menus',
+        'lg': 'Modals, drawers, sticky navigation',
+        'xl': 'Dialogs, important overlays, sticky headers',
+        '2xl': 'Maximum elevation: hero elements, dramatic layering',
+        'inner': 'Inset/pressed states: active buttons, input wells',
+      };
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 32 }}>
+          {Object.entries(tokens.shadow).map(([key, token]) => {
+            const css = shadowToCSS(token.$value);
+            return (
+              <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+                <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 140 }}>shadow-{key}</div>
+                <div
+                  style={{
+                    width: 120,
+                    height: 64,
+                    backgroundColor: '#ffffff',
+                    borderRadius: 8,
+                    boxShadow: css,
+                    border: key === 'none' ? '1px solid #e5e5e5' : 'none',
+                  }}
+                />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <div style={{ fontFamily: 'monospace', fontSize: 11, color: '#a3a3a3', maxWidth: 320 }}>{css}</div>
+                  {usageNotes[key] && (
+                    <div style={{ fontSize: 12, color: '#737373' }}>{usageNotes[key]}</div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      );
+    })()}
 
     <Section title="Interactive card pattern">
       <CodeBlock

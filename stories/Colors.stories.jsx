@@ -1,6 +1,6 @@
 import React from 'react';
 import tokens from '../design-tokens.json';
-import { PageHeader, Section, Tip, Warning, CodeBlock, UsageTable } from './shared/DocBlock';
+import { PageHeader, Section, Tip, Warning, CodeBlock } from './shared/DocBlock';
 
 export default {
   title: 'Design Tokens/Colors',
@@ -61,21 +61,37 @@ export const ColorPalette = () => (
       ))}
     </div>
 
-    <ScaleSection
-      title="Gray"
-      description="Your most-used scale. Reach for grays for text, backgrounds, borders, and disabled states."
-      scaleObj={tokens.color.gray}
-      prefix="gray"
-    />
-
-    <UsageTable
-      rows={[
-        ['gray-50 ... gray-200', 'Backgrounds, cards, subtle borders'],
-        ['gray-300 ... gray-400', 'Dividers, disabled text, placeholder icons'],
-        ['gray-500 ... gray-700', 'Secondary text, labels, icons'],
-        ['gray-800 ... gray-950', 'Primary text, headings'],
-      ]}
-    />
+    {(() => {
+      const grayUsage = (shade) => {
+        const n = parseInt(shade, 10);
+        if (n <= 200) return 'Backgrounds, cards, subtle borders';
+        if (n <= 400) return 'Dividers, disabled text, placeholder icons';
+        if (n <= 700) return 'Secondary text, labels, icons';
+        return 'Primary text, headings';
+      };
+      return (
+        <div style={{ marginBottom: 32 }}>
+          <h3 style={{ margin: '0 0 4px', fontSize: 16, fontWeight: 600 }}>Gray</h3>
+          <p style={{ color: '#525252', fontSize: 13, margin: '0 0 12px' }}>
+            Your most-used scale. Reach for grays for text, backgrounds, borders, and disabled states.
+          </p>
+          {Object.entries(tokens.color.gray).map(([key, token]) => (
+            <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
+              <div
+                style={{
+                  width: 48, height: 48, borderRadius: 6,
+                  backgroundColor: token.$value,
+                  border: '1px solid #e5e5e5', flexShrink: 0,
+                }}
+              />
+              <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 160 }}>gray-{key}</div>
+              <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 80 }}>{token.$value}</div>
+              <div style={{ fontSize: 12, color: '#a3a3a3' }}>{grayUsage(key)}</div>
+            </div>
+          ))}
+        </div>
+      );
+    })()}
 
     <ScaleSection
       title="Primary (Blue)"
@@ -112,14 +128,29 @@ export const ColorPalette = () => (
       <p style={{ fontSize: 14, color: '#404040', marginBottom: 12 }}>
         All recommended text/background pairings meet <strong>WCAG 2.1 AA</strong> (4.5 : 1 for normal text, 3 : 1 for large text).
       </p>
-      <UsageTable
-        rows={[
-          ['white + gray-900', '21 : 1 contrast ratio - safe for any text size'],
-          ['white + primary-600', '8.6 : 1 - safe for body text'],
-          ['gray-100 + gray-900', '18.7 : 1 - safe on tinted backgrounds'],
-          ['primary-600 + white', '8.6 : 1 - safe for button labels'],
-        ]}
-      />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 12 }}>
+        {[
+          ['white + gray-900', '21 : 1', 'Safe for any text size', '#ffffff', '#0a0a0a'],
+          ['white + primary-600', '8.6 : 1', 'Safe for body text', '#ffffff', '#2563eb'],
+          ['gray-100 + gray-900', '18.7 : 1', 'Safe on tinted backgrounds', '#f5f5f5', '#0a0a0a'],
+          ['primary-600 + white', '8.6 : 1', 'Safe for button labels', '#2563eb', '#ffffff'],
+        ].map(([pair, ratio, note, bg, fg]) => (
+          <div key={pair} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div
+              style={{
+                width: 48, height: 32, borderRadius: 6, backgroundColor: bg,
+                color: fg, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 11, fontWeight: 600, border: '1px solid #e5e5e5',
+              }}
+            >
+              Aa
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 200 }}>{pair}</div>
+            <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 60 }}>{ratio}</div>
+            <div style={{ fontSize: 12, color: '#a3a3a3' }}>{note}</div>
+          </div>
+        ))}
+      </div>
       <Warning>
         Always test your specific pairings. Avoid placing text below <strong>gray-500</strong> on white backgrounds for body copy &mdash; it may not meet contrast requirements.
       </Warning>
