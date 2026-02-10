@@ -1,6 +1,6 @@
-/** @type { import('@storybook/html-vite').StorybookConfig } */
+/** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
-  stories: ["../stories/**/*.stories.@(js|mjs)"],
-  framework: "@storybook/html-vite",
+  stories: ["../stories/**/*.stories.@(js|jsx)"],
+  framework: "@storybook/react-vite",
 };
 export default config;

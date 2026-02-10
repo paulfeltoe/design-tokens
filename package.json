@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@storybook/html-vite": "^8.6.0",
+    "@storybook/react-vite": "^8.6.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "storybook": "^8.6.0",
     "vite": "^6.1.0"
   }
