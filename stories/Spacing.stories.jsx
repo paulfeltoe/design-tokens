@@ -1,6 +1,6 @@
 import React from 'react';
 import tokens from '../design-tokens.json';
-import { PageHeader, Section, Tip, Warning, CodeBlock, UsageTable } from './shared/DocBlock';
+import { PageHeader, Section, Tip, Warning, CodeBlock } from './shared/DocBlock';
 
 export default {
   title: 'Design Tokens/Spacing',
@@ -19,37 +19,42 @@ export const SpacingScale = () => (
       The amount of space between elements communicates their relationship.
     </Tip>
 
-    <UsageTable
-      rows={[
-        ['spacing-1 (4px)', 'Icon-to-text gap, tight badge padding'],
-        ['spacing-2 (8px)', 'Inline element gaps, label-to-input margin'],
-        ['spacing-3 (12px)', 'Button vertical padding, compact card padding'],
-        ['spacing-4 (16px)', 'Default gap between elements, standard card padding'],
-        ['spacing-6 (24px)', 'Comfortable card padding, grid gaps'],
-        ['spacing-8 (32px)', 'Component-level separation, section starts'],
-        ['spacing-12 ... spacing-16', 'Page section padding, major visual breaks'],
-        ['spacing-20 ... spacing-32', 'Hero sections, landing page padding'],
-      ]}
-    />
-
-    {Object.entries(tokens.spacing).map(([key, token]) => (
-      <div
-        key={key}
-        style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 8 }}
-      >
-        <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 120 }}>spacing-{key}</div>
-        <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 60 }}>{token.$value}</div>
+    {(() => {
+      const usageNotes = {
+        '1': 'Icon-to-text gap, tight badge padding',
+        '2': 'Inline element gaps, label-to-input margin',
+        '3': 'Button vertical padding, compact card padding',
+        '4': 'Default gap between elements, standard card padding',
+        '6': 'Comfortable card padding, grid gaps',
+        '8': 'Component-level separation, section starts',
+        '12': 'Page section padding, major visual breaks',
+        '16': 'Page section padding, major visual breaks',
+        '20': 'Hero sections, landing page padding',
+        '24': 'Hero sections, landing page padding',
+        '32': 'Hero sections, landing page padding',
+      };
+      return Object.entries(tokens.spacing).map(([key, token]) => (
         <div
-          style={{
-            width: parseInt(token.$value, 10),
-            height: 24,
-            backgroundColor: '#3b82f6',
-            borderRadius: 3,
-            minWidth: key === '0' ? 2 : undefined,
-          }}
-        />
-      </div>
-    ))}
+          key={key}
+          style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 8 }}
+        >
+          <div style={{ fontFamily: 'monospace', fontSize: 13, minWidth: 120 }}>spacing-{key}</div>
+          <div style={{ fontFamily: 'monospace', fontSize: 13, color: '#737373', minWidth: 60 }}>{token.$value}</div>
+          <div
+            style={{
+              width: parseInt(token.$value, 10),
+              height: 24,
+              backgroundColor: '#3b82f6',
+              borderRadius: 3,
+              minWidth: key === '0' ? 2 : undefined,
+            }}
+          />
+          {usageNotes[key] && (
+            <div style={{ fontSize: 12, color: '#a3a3a3', marginLeft: 8 }}>{usageNotes[key]}</div>
+          )}
+        </div>
+      ));
+    })()}
 
     <Warning>
       Avoid arbitrary values like <code>15px</code> or <code>23px</code>. If the scale doesn't have what you need, pick the nearest value. Consistency is more important than pixel-perfection.
