@@ -3,59 +3,80 @@
 ## How to use
 
 1. Import `globals.css` at the root of the project (it's already included if the project was scaffolded from this repo).
-2. Reference tokens as CSS variables: `var(--color-primary-600)`, `var(--spacing-4)`, etc.
-3. Use semantic variables for anything user-facing (text, backgrounds, borders) so the UI stays consistent.
+2. Reference tokens as CSS variables: `var(--color-primary-500)`, `var(--spacing-4)`, etc.
+3. Use semantic variables for anything user-facing (text, backgrounds, borders) so the UI stays consistent across light and dark modes.
 4. **Always use the CSS variables defined in `globals.css`** instead of hardcoded values.
 
 ## Color System
 
+### Base palette
+
+The brand foundation. These are the core neutrals and accent tones used throughout the system.
+
+| Variable                    | Value                    | Description                                      |
+|-----------------------------|--------------------------|--------------------------------------------------|
+| `--color-base-white`        | #FFFFFF                  | Pure white                                       |
+| `--color-base-cream`        | #FFFCFA                  | Warm near-white (Snow). Light mode app background |
+| `--color-base-warm`         | #FFEFE2                  | Warm accent tint (Linen). Accent backgrounds     |
+| `--color-base-sandstone`    | #DCBFB4                  | Muted warm tone (Dirty Linen). Dark mode text    |
+| `--color-base-charcoal`     | #212020                  | Brand black. Light mode text, dark mode background |
+| `--color-base-transparent`  | rgba(0, 0, 0, 0)        | Fully transparent                                |
+| `--color-base-overlay`      | rgba(55, 55, 54, 0.6)   | Dark Slate at 60% opacity                        |
+
 ### Palette scales
 
-Six color scales, each with steps 50–950. Use the **middle values (500–600)** as the default, lighter values for backgrounds, darker values for hover/active states.
+Six color scales. Use the **middle values (400–600)** as the default, lighter values for backgrounds, darker values for hover/active states.
 
-| Scale       | Variable pattern            | Purpose                          |
-|-------------|-----------------------------|----------------------------------|
-| **Gray**    | `--color-gray-{50–950}`     | 50–200: backgrounds, cards, subtle borders. 300–400: dividers, disabled text, placeholder icons. 500–700: secondary text, labels, icons. 800–950: primary text, headings. |
-| **Primary** | `--color-primary-{50–950}`  | Brand, CTAs, links, focus rings  |
-| **Success** | `--color-success-{50–950}`  | Confirmations, positive states   |
-| **Warning** | `--color-warning-{50–950}`  | Cautions, pending states         |
-| **Error**   | `--color-error-{50–950}`    | Errors, destructive actions      |
-| **Info**    | `--color-info-{50–950}`     | Informational, help, tips        |
+| Scale       | Variable pattern             | Steps   | Purpose                          |
+|-------------|------------------------------|---------|----------------------------------|
+| **Gray**    | `--color-gray-{100–600}`     | 100, 150, 200, 300, 400, 500, 600 | 100–150: backgrounds, hover fills. 200: borders, disabled. 300–400: contrast, dividers. 500: secondary text. 600: dark mode surfaces. |
+| **Primary** | `--color-primary-{100–800}`  | 100–800 | Warm orange brand, CTAs, links, focus rings. 500 (Pumpkin) = light mode accent, 300 (Peach) = dark mode accent. |
+| **Success** | `--color-success-{50–800}`   | 50–800  | Confirmations, positive states. 500 (Peppermint) = primary success. |
+| **Warning** | `--color-warning-{50–800}`   | 50–800  | Cautions, pending states         |
+| **Error**   | `--color-error-{50–800}`     | 50–800  | Errors, destructive actions. 500 (Alarm) = light mode, 300 (Alert) = dark mode. |
+| **Info**    | `--color-info-{50–800}`      | 50–800  | Informational, help, tips. 200 (Sky) = banner/tag backgrounds. |
 
 ### Semantic colors — use these first
 
-Instead of picking a raw palette value, prefer the semantic aliases. They ensure consistency and make future theming easier.
+Instead of picking a raw palette value, prefer the semantic aliases. They auto-switch between light and dark mode via `prefers-color-scheme`.
 
 **Text colors:**
-- `--color-text-primary` — Default body text (gray-900)
-- `--color-text-secondary` — Supporting text (gray-600)
-- `--color-text-tertiary` — Placeholder, hint text (gray-500)
-- `--color-text-disabled` — Disabled state (gray-400)
-- `--color-text-inverse` — Text on dark backgrounds (white)
-- `--color-text-link` / `--color-text-link-hover` — Anchor links
+- `--color-text-primary` — Default body text (light: charcoal, dark: warm)
+- `--color-text-secondary` — Supporting text (light: gray-500, dark: sandstone)
+- `--color-text-tertiary` — Placeholder, hint text (light: gray-400, dark: gray-300)
+- `--color-text-disabled` — Disabled state (light: gray-200, dark: gray-500)
+- `--color-text-inverse` — Text on inverted backgrounds (light: white, dark: charcoal)
+- `--color-text-link` / `--color-text-link-hover` — Anchor links (light: primary-500/600, dark: primary-300/200)
 - `--color-text-error` / `--color-text-success` / `--color-text-warning` — Status text
 
 **Background colors:**
-- `--color-bg-primary` — Page background (white)
-- `--color-bg-secondary` — Subtle sections, cards (gray-50)
-- `--color-bg-tertiary` — Stronger contrast areas (gray-100)
-- `--color-bg-inverse` — Dark backgrounds (gray-900)
-- `--color-bg-overlay` — Modal/dialog backdrops (black 50%)
+- `--color-bg-primary` — Page background (light: cream, dark: charcoal)
+- `--color-bg-secondary` — Subtle sections, alternating rows (light: gray-100, dark: gray-600)
+- `--color-bg-tertiary` — Accent background (light: warm/Linen, dark: warm)
+- `--color-bg-surface` — Card/panel surface (light: white, dark: gray-600)
+- `--color-bg-inverse` — Inverted background (light: charcoal, dark: cream)
+- `--color-bg-hover` — Hover fill (light: gray-100, dark: gray-500)
+- `--color-bg-overlay` — Modal/dialog backdrops (Dark Slate 60%)
 
 **Border colors:**
-- `--color-border-default` — Standard borders (gray-200)
-- `--color-border-strong` — Emphasized borders (gray-300)
-- `--color-border-subtle` — Light separators (gray-100)
-- `--color-border-focus` — Focus rings (primary-500)
-- `--color-border-error` — Validation error borders (error-500)
+- `--color-border-default` — Standard borders (light: gray-200, dark: gray-500)
+- `--color-border-strong` — Emphasized borders (light: gray-400, dark: gray-400)
+- `--color-border-subtle` — Light separators (light: gray-100, dark: gray-600)
+- `--color-border-disabled` — Disabled borders (light: gray-200, dark: gray-500)
+- `--color-border-focus` — Focus rings (light: primary-500, dark: primary-300)
+- `--color-border-error` — Validation error borders (light: error-500, dark: error-300)
 
 **Interactive colors:**
-- `--color-interactive-primary` — Button/link default (primary-600)
-- `--color-interactive-primary-hover` — Hover state (primary-700)
-- `--color-interactive-primary-active` — Active/pressed (primary-800)
-- `--color-interactive-primary-disabled` — Disabled (gray-300)
-- `--color-interactive-secondary` — Secondary action default (gray-600)
+- `--color-interactive-primary` — Button/link default (light: primary-500, dark: primary-300)
+- `--color-interactive-primary-hover` — Hover state (light: primary-600, dark: primary-200)
+- `--color-interactive-primary-active` — Active/pressed (light: primary-700, dark: primary-100)
+- `--color-interactive-primary-disabled` — Disabled (light: gray-200, dark: gray-500)
+- `--color-interactive-secondary` — Secondary action default (light: gray-500, dark: gray-300)
 - `--color-interactive-secondary-hover` / `--color-interactive-secondary-active`
+
+### Gradient
+
+- `--gradient-oomph` — Peach-to-Sky brand gradient (`linear-gradient(90deg, primary-300 0%, info-200 100%)`)
 
 ## Spacing
 
@@ -81,9 +102,9 @@ A 4px base grid. Use these for all padding, margin, and gap values.
 ## Typography
 
 ### Font families
-- `--font-family-sans` — Inter + system fallbacks. Body text, headings, buttons, form controls, and all standard UI.
-- `--font-family-serif` — Georgia stack. Long-form editorial content, blog posts, marketing pages.
-- `--font-family-mono` — Fira Code + monospace fallbacks. Code snippets, technical values, terminal output.
+- `--font-family-sans` — Roboto + system fallbacks. Body text, headings, buttons, form controls, and all standard UI.
+- `--font-family-serif` — Poynter + Georgia stack. Long-form editorial content, blog posts, marketing pages.
+- `--font-family-mono` — Roboto Mono + Fira Code fallbacks. Code snippets, technical values, terminal output.
 
 ### Font sizes
 | Token               | Value | When to use                                    |
@@ -207,7 +228,7 @@ line-height: var(--line-height-relaxed);
 
 ## Shadows
 
-Use shadows to communicate elevation. Higher elevation = more prominent shadow.
+Use shadows to communicate elevation. Higher elevation = more prominent shadow. Shadow color is based on charcoal (#212020).
 
 | Token           | When to use                                       |
 |-----------------|---------------------------------------------------|
@@ -282,12 +303,14 @@ Use in media queries (mobile-first):
 ## Rules
 
 1. **Always use CSS variables** — never hardcode colors, spacing, font sizes, shadows, or radii.
-2. **Prefer semantic tokens** — use `--color-text-primary` over `--color-gray-900`. Use `--color-border-default` over `--color-gray-200`.
+2. **Prefer semantic tokens** — use `--color-text-primary` over `--color-base-charcoal`. Use `--color-border-default` over `--color-gray-200`. Semantic tokens auto-switch for dark mode.
 3. **Spacing is multiples of 4px** — stick to the spacing scale. Don't use arbitrary values like `13px` or `7px`.
 4. **Border radius default is `--border-radius-base` (8px)** — use this for buttons, inputs, and cards unless a different size is explicitly needed.
-5. **Shadows = elevation** — flat elements have no shadow, raised elements get `--shadow-sm` to `--shadow-md`, floating elements get `--shadow-lg` to `--shadow-xl`.
+5. **Shadows = elevation** — flat elements have no shadow, raised elements get `--shadow-sm` to `--shadow-md`, floating elements get `--shadow-lg` to `--shadow-xl`. Shadow color is brand charcoal, not pure black.
 6. **Transitions always use token durations and easings** — don't use `0.3s ease`.
-7. **Use `--font-family-sans` for all UI text** — only use mono for code and serif for editorial.
+7. **Use `--font-family-sans` (Roboto) for all UI text** — only use mono (Roboto Mono) for code and serif (Poynter) for editorial.
 8. **Mobile-first responsive design** — start with the smallest breakpoint and add `min-width` media queries.
 9. **Focus states use `--color-border-focus`** — every interactive element must have a visible focus indicator.
 10. **Disabled states use the `*-disabled` tokens** — reduced opacity alone is not sufficient.
+11. **Dark mode is automatic** — semantic tokens switch via `prefers-color-scheme: dark`. Use semantic tokens and dark mode works for free.
+12. **Use `--gradient-oomph`** for brand gradient accents (Peach-to-Sky).
