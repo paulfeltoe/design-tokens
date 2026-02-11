@@ -15,7 +15,7 @@ Six color scales, each with steps 50–950. Use the **middle values (500–600)*
 
 | Scale       | Variable pattern            | Purpose                          |
 |-------------|-----------------------------|----------------------------------|
-| **Gray**    | `--color-gray-{50–950}`     | Neutral UI, text, borders        |
+| **Gray**    | `--color-gray-{50–950}`     | 50–200: backgrounds, cards, subtle borders. 300–400: dividers, disabled text, placeholder icons. 500–700: secondary text, labels, icons. 800–950: primary text, headings. |
 | **Primary** | `--color-primary-{50–950}`  | Brand, CTAs, links, focus rings  |
 | **Success** | `--color-success-{50–950}`  | Confirmations, positive states   |
 | **Warning** | `--color-warning-{50–950}`  | Cautions, pending states         |
@@ -61,57 +61,67 @@ Instead of picking a raw palette value, prefer the semantic aliases. They ensure
 
 A 4px base grid. Use these for all padding, margin, and gap values.
 
-| Token          | Value  | Common use                     |
-|----------------|--------|--------------------------------|
-| `--spacing-0`  | 0px    | No spacing                     |
-| `--spacing-1`  | 4px    | Tight inner padding            |
-| `--spacing-2`  | 8px    | Small gaps, icon padding       |
-| `--spacing-3`  | 12px   | Compact padding                |
-| `--spacing-4`  | 16px   | Default padding, gaps          |
-| `--spacing-5`  | 20px   | Medium padding                 |
-| `--spacing-6`  | 24px   | Section padding, card padding  |
-| `--spacing-8`  | 32px   | Large section gaps             |
-| `--spacing-10` | 40px   | Page section spacing           |
-| `--spacing-12` | 48px   | Hero/section spacing           |
-| `--spacing-16` | 64px   | Major layout spacing           |
-| `--spacing-20` | 80px   | Page-level spacing             |
-| `--spacing-24` | 96px   | Large layout spacing           |
-| `--spacing-32` | 128px  | Maximum spacing                |
+| Token          | Value  | When to use                                        |
+|----------------|--------|----------------------------------------------------|
+| `--spacing-0`  | 0px    | No spacing                                         |
+| `--spacing-1`  | 4px    | Icon-to-text gap, tight badge padding              |
+| `--spacing-2`  | 8px    | Inline element gaps, label-to-input margin         |
+| `--spacing-3`  | 12px   | Button vertical padding, compact card padding      |
+| `--spacing-4`  | 16px   | Default gap between elements, standard card padding|
+| `--spacing-5`  | 20px   | Medium padding                                     |
+| `--spacing-6`  | 24px   | Comfortable card padding, grid gaps                |
+| `--spacing-8`  | 32px   | Component-level separation, section starts         |
+| `--spacing-10` | 40px   | Page section spacing                               |
+| `--spacing-12` | 48px   | Page section padding, major visual breaks          |
+| `--spacing-16` | 64px   | Page section padding, major visual breaks          |
+| `--spacing-20` | 80px   | Hero sections, landing page padding                |
+| `--spacing-24` | 96px   | Hero sections, landing page padding                |
+| `--spacing-32` | 128px  | Hero sections, landing page padding                |
 
 ## Typography
 
 ### Font families
-- `--font-family-sans` — Inter + system fallbacks. Use for all UI text.
-- `--font-family-serif` — Georgia stack. Use sparingly for editorial content.
-- `--font-family-mono` — Fira Code + monospace fallbacks. Use for code, data, technical values.
+- `--font-family-sans` — Inter + system fallbacks. Body text, headings, buttons, form controls, and all standard UI.
+- `--font-family-serif` — Georgia stack. Long-form editorial content, blog posts, marketing pages.
+- `--font-family-mono` — Fira Code + monospace fallbacks. Code snippets, technical values, terminal output.
 
 ### Font sizes
-| Token               | Value | Use for                            |
-|---------------------|-------|------------------------------------|
-| `--font-size-xs`    | 12px  | Captions, badges, labels           |
-| `--font-size-sm`    | 14px  | Secondary text, table cells        |
-| `--font-size-base`  | 16px  | Body text (default)                |
-| `--font-size-lg`    | 18px  | Lead paragraphs, subtitles         |
-| `--font-size-xl`    | 20px  | H5, large body                     |
-| `--font-size-2xl`   | 24px  | H4, section titles                 |
-| `--font-size-3xl`   | 30px  | H3                                 |
-| `--font-size-4xl`   | 36px  | H2                                 |
-| `--font-size-5xl`   | 48px  | H1, hero text                     |
-| `--font-size-6xl`   | 60px  | Display, marketing                 |
-| `--font-size-7xl`   | 72px  | Display, marketing                 |
+| Token               | Value | When to use                                    |
+|---------------------|-------|------------------------------------------------|
+| `--font-size-xs`    | 12px  | Timestamps, fine print, badge labels           |
+| `--font-size-sm`    | 14px  | Captions, labels, secondary text               |
+| `--font-size-base`  | 16px  | Default body text                              |
+| `--font-size-lg`    | 18px  | Lead paragraphs, sub-headings                  |
+| `--font-size-xl`    | 20px  | Lead paragraphs, sub-headings                  |
+| `--font-size-2xl`   | 24px  | Section headings (h2 - h4)                     |
+| `--font-size-3xl`   | 30px  | Section headings (h2 - h4)                     |
+| `--font-size-4xl`   | 36px  | Section headings (h2 - h4)                     |
+| `--font-size-5xl`   | 48px  | Page titles, hero text, marketing headlines    |
+| `--font-size-6xl`   | 60px  | Page titles, hero text, marketing headlines    |
+| `--font-size-7xl`   | 72px  | Page titles, hero text, marketing headlines    |
 
 ### Font weights
 `--font-weight-thin` (100) through `--font-weight-black` (900). Most common:
-- `--font-weight-normal` (400) — Body text
-- `--font-weight-medium` (500) — Labels, nav items
-- `--font-weight-semibold` (600) — Subheadings, card titles
-- `--font-weight-bold` (700) — Headings
+- `--font-weight-normal` (400) — Body text, descriptions, form inputs
+- `--font-weight-medium` (500) — Labels, nav items, subtle emphasis
+- `--font-weight-semibold` (600) — Sub-headings, card titles, table headers
+- `--font-weight-bold` (700) — Page headings, strong emphasis
 
 ### Line heights
-- `--line-height-tight` (1.25) — Headings
-- `--line-height-snug` (1.375) — Subheadings
-- `--line-height-normal` (1.5) — Body text
-- `--line-height-relaxed` (1.625) — Large body, descriptions
+- `--line-height-none` (1.0) — Single-line display text, icons beside text
+- `--line-height-tight` (1.25) — Headings, compact card titles
+- `--line-height-snug` (1.375) — Sub-headings, large text
+- `--line-height-normal` (1.5) — Default body text (recommended)
+- `--line-height-relaxed` (1.625) — Long-form reading, editorial content
+- `--line-height-loose` (2.0) — Spaced-out small text, legal copy
+
+### Letter spacing
+- `--letter-spacing-tighter` (-0.05em) — Large display headlines
+- `--letter-spacing-tight` (-0.025em) — Page headings (h1, h2)
+- `--letter-spacing-normal` (0em) — Body text, default
+- `--letter-spacing-wide` (0.025em) — Subtle emphasis on small text
+- `--letter-spacing-wider` (0.05em) — Small-caps, overline labels
+- `--letter-spacing-widest` (0.1em) — All-caps labels, category tags
 
 ### Typography presets
 
@@ -181,47 +191,51 @@ line-height: var(--line-height-relaxed);
 ## Borders
 
 ### Widths
-- `--border-width-none` (0px) — No border
-- `--border-width-thin` (1px) — Default border (inputs, cards, dividers)
-- `--border-width-medium` (2px) — Emphasized borders, active tabs
-- `--border-width-thick` (4px) — Strong emphasis, left-border accents
+- `--border-width-none` (0px) — Remove borders entirely (e.g. elevated cards that rely on shadow)
+- `--border-width-thin` (1px) — Default borders, dividers, form inputs, table cells
+- `--border-width-medium` (2px) — Focus rings, active tab indicators, emphasized separators
+- `--border-width-thick` (4px) — Decorative accents, left-border callouts, branding elements
 
 ### Radii
-- `--border-radius-none` (0px) — Sharp corners
-- `--border-radius-sm` (4px) — Badges, chips, small elements
-- `--border-radius-base` (8px) — Buttons, inputs, cards (default)
-- `--border-radius-md` (12px) — Larger cards, dialogs
-- `--border-radius-lg` (16px) — Modals, panels
-- `--border-radius-xl` (24px) — Large containers
-- `--border-radius-full` (9999px) — Circles, pills
+- `--border-radius-none` (0px) — Sharp corners, table cells, utility elements
+- `--border-radius-sm` (4px) — Small elements: badges, chips, tags
+- `--border-radius-base` (8px) — Default: buttons, cards, inputs, dropdowns
+- `--border-radius-md` (12px) — Larger cards, image containers
+- `--border-radius-lg` (16px) — Modals, dialogs, hero images
+- `--border-radius-xl` (24px) — Feature cards, marketing sections
+- `--border-radius-full` (9999px) — Pill buttons, avatars, status indicators
 
 ## Shadows
 
 Use shadows to communicate elevation. Higher elevation = more prominent shadow.
 
-| Token          | Use for                                      |
-|----------------|----------------------------------------------|
-| `--shadow-sm`  | Subtle cards, hover lift on flat elements     |
-| `--shadow-base`| Default cards, dropdowns                      |
-| `--shadow-md`  | Floating cards, raised sections               |
-| `--shadow-lg`  | Dropdowns, popovers                           |
-| `--shadow-xl`  | Modals, dialogs                               |
-| `--shadow-2xl` | Toast notifications, high-emphasis overlays   |
-| `--shadow-inner`| Inset effect for pressed/active inputs       |
+| Token           | When to use                                       |
+|-----------------|---------------------------------------------------|
+| `--shadow-none` | Flat elements, disabled states, outlined components|
+| `--shadow-sm`   | Subtle lift on hover, small cards, form inputs    |
+| `--shadow-base` | Default cards, contained buttons                  |
+| `--shadow-md`   | Dropdowns, tooltips, popovers, floating menus     |
+| `--shadow-lg`   | Modals, drawers, sticky navigation                |
+| `--shadow-xl`   | Dialogs, important overlays, sticky headers       |
+| `--shadow-2xl`  | Maximum elevation: hero elements, dramatic layering|
+| `--shadow-inner`| Inset/pressed states: active buttons, input wells |
 
 ## Transitions
 
 ### Durations
-- `--duration-fast` (150ms) — Hover states, color changes
-- `--duration-base` (200ms) — Default interactions
-- `--duration-medium` (300ms) — Expanding panels, modals entering
-- `--duration-slow` (500ms) — Page transitions, complex animations
+- `--duration-instant` (0ms) — Immediate state changes, no animation (e.g. active/pressed)
+- `--duration-fast` (150ms) — Hover states, tooltips, small color changes, focus rings
+- `--duration-base` (200ms) — Default for most transitions: dropdowns, toggles, input focus
+- `--duration-medium` (300ms) — Panel slides, dropdown menus, tab switches
+- `--duration-slow` (500ms) — Page transitions, large modals, complex multi-step animations
+- `--duration-slower` (700ms) — Dramatic reveals, hero animations, onboarding flows
 
 ### Easings
-- `--easing-ease` — General purpose (default)
-- `--easing-ease-out` — Elements entering (appearing)
-- `--easing-ease-in` — Elements exiting (disappearing)
-- `--easing-ease-in-out` — Elements moving position
+- `--easing-linear` — Constant speed. Use for progress bars, loading spinners, marquees
+- `--easing-ease` — Gentle all-purpose curve. Good default for subtle transitions
+- `--easing-ease-in` — Starts slow, ends fast. Use for elements leaving the screen
+- `--easing-ease-out` — Starts fast, settles in. Use for elements entering the screen (most common)
+- `--easing-ease-in-out` — Slow start and end. Use for position changes, toggles, accordions
 
 ```css
 /* Example transition */
