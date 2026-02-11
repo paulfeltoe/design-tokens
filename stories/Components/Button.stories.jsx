@@ -8,17 +8,21 @@ export default {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'ghost', 'danger'],
+      options: ['primary', 'secondary', 'ghost', 'danger', 'link', 'timeSlot', 'dateSelector'],
       description: 'Visual style of the button',
     },
     size: {
       control: 'select',
       options: ['sm', 'base', 'lg'],
-      description: 'Button size',
+      description: 'Button size (primary, secondary, ghost, danger only)',
     },
     fullWidth: {
       control: 'boolean',
       description: 'Stretch to fill container width',
+    },
+    selected: {
+      control: 'boolean',
+      description: 'Selected state (timeSlot, dateSelector only)',
     },
     disabled: {
       control: 'boolean',
@@ -34,6 +38,7 @@ export default {
     variant: 'primary',
     size: 'base',
     fullWidth: false,
+    selected: false,
     disabled: false,
     children: 'Button',
     onClick: fn(),
@@ -56,6 +61,26 @@ export const Ghost = {
 
 export const Danger = {
   args: { variant: 'danger', children: 'Delete Account' },
+};
+
+export const Link = {
+  args: { variant: 'link', children: 'View Details' },
+};
+
+export const TimeSlotDefault = {
+  args: { variant: 'timeSlot', children: '9:00 AM', selected: false },
+};
+
+export const TimeSlotSelected = {
+  args: { variant: 'timeSlot', children: '9:00 AM', selected: true },
+};
+
+export const DateSelectorDefault = {
+  args: { variant: 'dateSelector', children: '15', selected: false },
+};
+
+export const DateSelectorSelected = {
+  args: { variant: 'dateSelector', children: '15', selected: true },
 };
 
 export const Small = {
@@ -91,6 +116,41 @@ export const SideBySide = {
       <Button style={{ flex: 1 }}>Apply Preferences</Button>
     </div>
   ),
+};
+
+export const TimeSlotGrid = {
+  render: () => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, maxWidth: 360 }}>
+      <Button variant="timeSlot" selected>9:00 AM</Button>
+      <Button variant="timeSlot">9:30 AM</Button>
+      <Button variant="timeSlot">10:00 AM</Button>
+      <Button variant="timeSlot">10:30 AM</Button>
+      <Button variant="timeSlot">11:00 AM</Button>
+      <Button variant="timeSlot">11:30 AM</Button>
+    </div>
+  ),
+};
+
+export const DateSelectorRow = {
+  render: () => {
+    const days = [
+      { label: 'Mon', num: '12' },
+      { label: 'Tue', num: '13' },
+      { label: 'Wed', num: '14' },
+      { label: 'Thu', num: '15', selected: true },
+      { label: 'Fri', num: '16' },
+    ];
+    return (
+      <div style={{ display: 'flex', gap: 8 }}>
+        {days.map((d) => (
+          <div key={d.num} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+            <span style={{ fontSize: 10, textTransform: 'uppercase', color: '#636362' }}>{d.label}</span>
+            <Button variant="dateSelector" selected={d.selected}>{d.num}</Button>
+          </div>
+        ))}
+      </div>
+    );
+  },
 };
 
 export const ClickInteraction = {

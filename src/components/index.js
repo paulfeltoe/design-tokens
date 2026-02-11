@@ -11,3 +11,6 @@ export { ListItem } from './ListItem';
 export { ProgressSteps } from './ProgressSteps';
 export { IconButton } from './IconButton';
 export { BottomNav } from './BottomNav';
+export { BottomSheet } from './BottomSheet';
+export { StickyFooter } from './StickyFooter';
+export { TopBar } from './TopBar';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { expect, within } from 'storybook/test';
-import { Card, Badge } from '../../src/components';
+import { fn, expect, within } from 'storybook/test';
+import { Card, Badge, Avatar } from '../../src/components';
 
 export default {
   title: 'Components/Card',
@@ -8,7 +8,7 @@ export default {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['elevated', 'outlined', 'filled'],
+      options: ['elevated', 'outlined', 'filled', 'appointment', 'provider'],
       description: 'Card surface style',
     },
     title: {
@@ -65,6 +65,81 @@ export const WithImage = {
     subtitle: 'Learn techniques to reduce daily stress.',
     meta: '5 min read',
   },
+};
+
+export const Appointment = {
+  args: {
+    variant: 'appointment',
+    dateLabel: 'Wed',
+    dateNumber: '14',
+    dateMonth: 'Feb',
+    title: 'Dr. Sarah Mitchell',
+    subtitle: 'Clinical Psychologist',
+    timeLabel: '10:30 AM - 11:00 AM',
+  },
+};
+
+export const AppointmentList = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 360 }}>
+      <Card
+        variant="appointment"
+        dateLabel="Wed"
+        dateNumber="14"
+        dateMonth="Feb"
+        title="Dr. Sarah Mitchell"
+        subtitle="Clinical Psychologist"
+        timeLabel="10:30 AM - 11:00 AM"
+      />
+      <Card
+        variant="appointment"
+        dateLabel="Thu"
+        dateNumber="15"
+        dateMonth="Feb"
+        title="Dr. James Chen"
+        subtitle="Nutritionist"
+        timeLabel="2:00 PM - 2:30 PM"
+      />
+    </div>
+  ),
+};
+
+export const Provider = {
+  args: {
+    variant: 'provider',
+    providerName: 'Dr. Sarah Mitchell',
+    providerTime: '10:30 AM',
+    avatar: <Avatar name="Sarah Mitchell" size="base" />,
+    onExpand: fn(),
+  },
+};
+
+export const ProviderList = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, maxWidth: 360 }}>
+      <Card
+        variant="provider"
+        providerName="Dr. Sarah Mitchell"
+        providerTime="10:30 AM"
+        avatar={<Avatar name="Sarah Mitchell" size="base" />}
+        onExpand={() => {}}
+      />
+      <Card
+        variant="provider"
+        providerName="Dr. James Chen"
+        providerTime="11:00 AM"
+        avatar={<Avatar name="James Chen" size="base" />}
+        onExpand={() => {}}
+      />
+      <Card
+        variant="provider"
+        providerName="Dr. Lisa Park"
+        providerTime="2:00 PM"
+        avatar={<Avatar name="Lisa Park" size="base" />}
+        onExpand={() => {}}
+      />
+    </div>
+  ),
 };
 
 export const ContentGrid = {
