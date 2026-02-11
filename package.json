@@ -11,11 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@storybook/addon-themes": "^8.6.15",
-    "@storybook/react-vite": "^8.6.0",
+    "@storybook/addon-themes": "^10.2.8",
+    "@storybook/react-vite": "^10.2.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "storybook": "^8.6.0",
+    "storybook": "^10.2.8",
     "vite": "^6.1.0"
   }
 }
