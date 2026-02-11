@@ -85,8 +85,8 @@
   --color-text-tertiary: var(--color-gray-400);
   --color-text-disabled: var(--color-gray-200);
   --color-text-inverse: var(--color-base-white);
-  --color-text-link: var(--color-primary-500);
-  --color-text-link-hover: var(--color-primary-600);
+  --color-text-link: var(--color-primary-300);
+  --color-text-link-hover: var(--color-primary-400);
   --color-text-error: var(--color-error-500);
   --color-text-success: var(--color-success-600);
   --color-text-warning: var(--color-warning-600);
@@ -105,13 +105,13 @@
   --color-border-strong: var(--color-gray-400);
   --color-border-subtle: var(--color-gray-100);
   --color-border-disabled: var(--color-gray-200);
-  --color-border-focus: var(--color-primary-500);
+  --color-border-focus: var(--color-primary-300);
   --color-border-error: var(--color-error-500);
 
   /* Interactive */
-  --color-interactive-primary: var(--color-primary-500);
-  --color-interactive-primary-hover: var(--color-primary-600);
-  --color-interactive-primary-active: var(--color-primary-700);
+  --color-interactive-primary: var(--color-primary-300);
+  --color-interactive-primary-hover: var(--color-primary-400);
+  --color-interactive-primary-active: var(--color-primary-500);
   --color-interactive-primary-disabled: var(--color-gray-200);
   --color-interactive-secondary: var(--color-gray-500);
   --color-interactive-secondary-hover: var(--color-gray-600);

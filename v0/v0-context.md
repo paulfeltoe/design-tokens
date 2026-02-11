@@ -46,7 +46,7 @@ Instead of picking a raw palette value, prefer the semantic aliases. They auto-s
 - `--color-text-tertiary` — Placeholder, hint text (light: gray-400, dark: gray-300)
 - `--color-text-disabled` — Disabled state (light: gray-200, dark: gray-500)
 - `--color-text-inverse` — Text on inverted backgrounds (light: white, dark: charcoal)
-- `--color-text-link` / `--color-text-link-hover` — Anchor links (light: primary-500/600, dark: primary-300/200)
+- `--color-text-link` / `--color-text-link-hover` — Anchor links (light: primary-300/400, dark: primary-300/200)
 - `--color-text-error` / `--color-text-success` / `--color-text-warning` — Status text
 
 **Background colors:**
@@ -63,13 +63,13 @@ Instead of picking a raw palette value, prefer the semantic aliases. They auto-s
 - `--color-border-strong` — Emphasized borders (light: gray-400, dark: gray-400)
 - `--color-border-subtle` — Light separators (light: gray-100, dark: gray-600)
 - `--color-border-disabled` — Disabled borders (light: gray-200, dark: gray-500)
-- `--color-border-focus` — Focus rings (light: primary-500, dark: primary-300)
+- `--color-border-focus` — Focus rings (light: primary-300, dark: primary-300)
 - `--color-border-error` — Validation error borders (light: error-500, dark: error-300)
 
 **Interactive colors:**
-- `--color-interactive-primary` — Button/link default (light: primary-500, dark: primary-300)
-- `--color-interactive-primary-hover` — Hover state (light: primary-600, dark: primary-200)
-- `--color-interactive-primary-active` — Active/pressed (light: primary-700, dark: primary-100)
+- `--color-interactive-primary` — Button/link default (light: primary-300, dark: primary-300)
+- `--color-interactive-primary-hover` — Hover state (light: primary-400, dark: primary-200)
+- `--color-interactive-primary-active` — Active/pressed (light: primary-500, dark: primary-100)
 - `--color-interactive-primary-disabled` — Disabled (light: gray-200, dark: gray-500)
 - `--color-interactive-secondary` — Secondary action default (light: gray-500, dark: gray-300)
 - `--color-interactive-secondary-hover` / `--color-interactive-secondary-active`
