@@ -3,12 +3,14 @@ import {
   resolveToken,
   resolveColor,
   resolveFontFamily,
+  resolveShadow,
 } from '../tokens/resolveToken';
 
 export function Button({
   variant = 'primary',
   size = 'base',
   fullWidth = false,
+  selected = false,
   disabled = false,
   children,
   style,
@@ -46,25 +48,68 @@ export function Button({
       background: resolveColor('base.charcoal'),
       color: resolveColor('white'),
       border: 'none',
+      borderRadius: resolveToken('border.radius', 'full'),
+      height: 50,
     },
     secondary: {
       background: 'transparent',
       color: resolveColor('base.charcoal'),
       border: `${resolveToken('border.width', 'thin')} solid ${resolveColor('base.charcoal')}`,
+      borderRadius: resolveToken('border.radius', 'full'),
+      height: 50,
     },
     ghost: {
       background: 'transparent',
       color: resolveColor('base.charcoal'),
       border: 'none',
+      borderRadius: resolveToken('border.radius', 'base'),
     },
     danger: {
       background: resolveColor('error.600'),
       color: resolveColor('white'),
       border: 'none',
+      borderRadius: resolveToken('border.radius', 'full'),
+      height: 50,
+    },
+    link: {
+      background: 'transparent',
+      color: resolveColor('base.charcoal'),
+      border: 'none',
+      borderRadius: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
+    timeSlot: {
+      background: selected ? resolveColor('base.charcoal') : resolveColor('white'),
+      color: selected ? resolveColor('cream') : resolveColor('base.charcoal'),
+      border: `${resolveToken('border.width', 'thin')} solid ${resolveColor('base.charcoal')}`,
+      borderRadius: resolveToken('border.radius', 'xl'),
+      height: 42,
+      paddingTop: resolveToken('spacing', '3'),
+      paddingBottom: resolveToken('spacing', '3'),
+      paddingLeft: resolveToken('spacing', '4'),
+      paddingRight: resolveToken('spacing', '4'),
+    },
+    dateSelector: {
+      background: selected ? resolveColor('primary.500') : resolveColor('white'),
+      color: selected ? resolveColor('white') : resolveColor('base.charcoal'),
+      border: 'none',
+      borderRadius: resolveToken('border.radius', 'sm'),
+      paddingTop: resolveToken('spacing', '3'),
+      paddingBottom: resolveToken('spacing', '3'),
+      paddingLeft: resolveToken('spacing', '4'),
+      paddingRight: resolveToken('spacing', '4'),
+      boxShadow: selected ? resolveShadow('sm') : 'none',
+      fontWeight: resolveToken('font.weight', 'medium'),
+      fontSize: resolveToken('font.size', 'xs'),
+      textTransform: 'none',
     },
   };
 
-  const sizeStyles = sizeMap[size] || sizeMap.base;
+  const isCustomSize = variant === 'timeSlot' || variant === 'dateSelector' || variant === 'link';
+  const sizeStyles = isCustomSize ? {} : (sizeMap[size] || sizeMap.base);
   const variantStyles = variantMap[variant] || variantMap.primary;
 
   const resolved = {
