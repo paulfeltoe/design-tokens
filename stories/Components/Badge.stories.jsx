@@ -1,42 +1,70 @@
 import React from 'react';
+import { expect, within } from 'storybook/test';
 import { Badge } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/Badge',
+  component: Badge,
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'primary', 'success', 'warning', 'error', 'info'],
+      description: 'Color variant',
+    },
+    children: {
+      control: 'text',
+      description: 'Badge content',
+    },
+  },
+  args: {
+    variant: 'default',
+    children: '5 min read',
+  },
 };
 
-export const Overview = () => (
-  <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 720 }}>
-    <PageHeader
-      title="Badge"
-      description="Badges display short metadata like read times, statuses, or counts. They come in semantic color variants."
-    />
+export const Playground = {};
 
-    <Tip>
-      In the Figma designs, badges appear on content cards showing read time (e.g. "5 min"), activity status, and category labels.
-    </Tip>
+export const Default = {
+  args: { children: '3 articles' },
+};
 
-    <Section title="Variants">
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-        <Badge>Default</Badge>
-        <Badge variant="primary">Primary</Badge>
-        <Badge variant="success">Success</Badge>
-        <Badge variant="warning">Warning</Badge>
-        <Badge variant="error">Error</Badge>
-        <Badge variant="info">Info</Badge>
-      </div>
-    </Section>
+export const Primary = {
+  args: { variant: 'primary', children: '5 min read' },
+};
 
-    <Section title="Content examples">
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-        <Badge variant="primary">5 min read</Badge>
-        <Badge variant="success">Completed</Badge>
-        <Badge variant="warning">In Progress</Badge>
-        <Badge variant="info">New</Badge>
-        <Badge variant="error">Overdue</Badge>
-        <Badge>3 articles</Badge>
-      </div>
-    </Section>
-  </div>
-);
+export const Success = {
+  args: { variant: 'success', children: 'Completed' },
+};
+
+export const Warning = {
+  args: { variant: 'warning', children: 'In Progress' },
+};
+
+export const Error = {
+  args: { variant: 'error', children: 'Overdue' },
+};
+
+export const Info = {
+  args: { variant: 'info', children: 'New' },
+};
+
+export const AllVariants = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Badge>Default</Badge>
+      <Badge variant="primary">Primary</Badge>
+      <Badge variant="success">Success</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="error">Error</Badge>
+      <Badge variant="info">Info</Badge>
+    </div>
+  ),
+};
+
+export const RendersContent = {
+  args: { variant: 'success', children: 'Completed' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText('Completed')).toBeInTheDocument();
+  },
+};

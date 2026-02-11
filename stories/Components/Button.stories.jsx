@@ -1,65 +1,114 @@
 import React from 'react';
+import { fn, expect, userEvent, within } from 'storybook/test';
 import { Button } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/Button',
+  component: Button,
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'ghost', 'danger'],
+      description: 'Visual style of the button',
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'base', 'lg'],
+      description: 'Button size',
+    },
+    fullWidth: {
+      control: 'boolean',
+      description: 'Stretch to fill container width',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the button',
+    },
+    children: {
+      control: 'text',
+      description: 'Button label',
+    },
+    onClick: { action: 'clicked' },
+  },
+  args: {
+    variant: 'primary',
+    size: 'base',
+    fullWidth: false,
+    disabled: false,
+    children: 'Button',
+    onClick: fn(),
+  },
 };
 
-export const Overview = () => (
-  <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 720 }}>
-    <PageHeader
-      title="Button"
-      description="Buttons trigger actions. Use primary for the main call-to-action, secondary for alternative actions, and ghost for subtle interactions."
-    />
+export const Playground = {};
 
-    <Tip>
-      In the Figma designs, primary buttons appear as dark filled, full-width, uppercase CTAs (e.g. "TRACK HABIT", "CONTINUE", "SAVE"). Secondary buttons are outlined (e.g. "I'LL DO THIS LATER").
-    </Tip>
+export const Primary = {
+  args: { variant: 'primary', children: 'Continue' },
+};
 
-    <Section title="Variants">
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-        <Button variant="primary">Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button variant="danger">Danger</Button>
-      </div>
-    </Section>
+export const Secondary = {
+  args: { variant: 'secondary', children: "I'll Do This Later" },
+};
 
-    <Section title="Sizes">
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-        <Button size="sm">Small</Button>
-        <Button size="base">Base</Button>
-        <Button size="lg">Large</Button>
-      </div>
-    </Section>
+export const Ghost = {
+  args: { variant: 'ghost', children: 'Skip for Now' },
+};
 
-    <Section title="Full width">
-      <div style={{ maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Button fullWidth>Track Habit</Button>
-        <Button variant="secondary" fullWidth>I'll Do This Later</Button>
-      </div>
-    </Section>
+export const Danger = {
+  args: { variant: 'danger', children: 'Delete Account' },
+};
 
-    <Section title="Disabled">
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-        <Button disabled>Primary Disabled</Button>
-        <Button variant="secondary" disabled>Secondary Disabled</Button>
-      </div>
-    </Section>
+export const Small = {
+  args: { size: 'sm', children: 'Small' },
+};
 
-    <Section title="Button pair (form pattern)">
-      <div style={{ maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Button fullWidth>Continue</Button>
-        <Button variant="ghost" fullWidth>Skip for Now</Button>
-      </div>
-    </Section>
+export const Large = {
+  args: { size: 'lg', children: 'Large' },
+};
 
-    <Section title="Side-by-side pattern">
-      <div style={{ maxWidth: 360, display: 'flex', gap: 12 }}>
-        <Button variant="secondary" style={{ flex: 1 }}>Cancel</Button>
-        <Button style={{ flex: 1 }}>Apply Preferences</Button>
-      </div>
-    </Section>
-  </div>
-);
+export const FullWidth = {
+  args: { fullWidth: true, children: 'Track Habit' },
+  decorators: [(Story) => <div style={{ maxWidth: 360 }}><Story /></div>],
+};
+
+export const Disabled = {
+  args: { disabled: true, children: 'Disabled' },
+};
+
+export const ButtonPair = {
+  render: () => (
+    <div style={{ maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Button fullWidth>Continue</Button>
+      <Button variant="ghost" fullWidth>Skip for Now</Button>
+    </div>
+  ),
+};
+
+export const SideBySide = {
+  render: () => (
+    <div style={{ maxWidth: 360, display: 'flex', gap: 12 }}>
+      <Button variant="secondary" style={{ flex: 1 }}>Cancel</Button>
+      <Button style={{ flex: 1 }}>Apply Preferences</Button>
+    </div>
+  ),
+};
+
+export const ClickInteraction = {
+  args: { children: 'Click Me', onClick: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
+
+export const DisabledNoClick = {
+  args: { children: 'Disabled', disabled: true, onClick: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await userEvent.click(button);
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
+};

@@ -1,45 +1,75 @@
 import React from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 import { TextInput } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/TextInput',
+  component: TextInput,
+  argTypes: {
+    label: {
+      control: 'text',
+      description: 'Label text above the input',
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text',
+    },
+    error: {
+      control: 'text',
+      description: 'Error message below the input',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the input',
+    },
+    type: {
+      control: 'select',
+      options: ['text', 'email', 'password', 'number', 'tel', 'date'],
+      description: 'HTML input type',
+    },
+  },
+  args: {
+    label: 'First Name',
+    placeholder: 'Enter your first name',
+    error: '',
+    disabled: false,
+    type: 'text',
+  },
+  decorators: [(Story) => <div style={{ maxWidth: 360 }}><Story /></div>],
 };
 
-export const Overview = () => (
-  <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 420 }}>
-    <PageHeader
-      title="TextInput"
-      description="Text inputs let users enter and edit text. They include a label, input field, and optional error message."
-    />
+export const Playground = {};
 
-    <Tip>
-      In the Figma designs, text inputs appear in health profile forms, registration flows, and appointment booking with labeled fields and validation states.
-    </Tip>
+export const Default = {
+  args: { label: 'Email Address', placeholder: 'you@example.com', type: 'email' },
+};
 
-    <Section title="Default">
-      <TextInput label="First Name" placeholder="Enter your first name" />
-    </Section>
+export const WithError = {
+  args: { label: 'Date of Birth', placeholder: 'MM/DD/YYYY', error: 'Please enter a valid date' },
+};
 
-    <Section title="With value">
-      <TextInput label="Email Address" type="email" defaultValue="user@example.com" />
-    </Section>
+export const Disabled = {
+  args: { label: 'Username', disabled: true, defaultValue: 'johndoe' },
+};
 
-    <Section title="Error state">
-      <TextInput label="Date of Birth" placeholder="MM/DD/YYYY" error="Please enter a valid date" />
-    </Section>
+export const FormLayout = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 360 }}>
+      <TextInput label="First Name" placeholder="Enter first name" />
+      <TextInput label="Last Name" placeholder="Enter last name" />
+      <TextInput label="Date of Birth" placeholder="MM/DD/YYYY" />
+      <TextInput label="Email" type="email" placeholder="Enter email address" />
+    </div>
+  ),
+};
 
-    <Section title="Disabled">
-      <TextInput label="Username" defaultValue="johndoe" disabled />
-    </Section>
-
-    <Section title="Form layout">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <TextInput label="First Name" placeholder="Enter first name" />
-        <TextInput label="Last Name" placeholder="Enter last name" />
-        <TextInput label="Date of Birth" placeholder="MM/DD/YYYY" />
-        <TextInput label="Email" type="email" placeholder="Enter email address" />
-      </div>
-    </Section>
-  </div>
-);
+export const TypeInteraction = {
+  args: { label: 'Search', placeholder: 'Type something...' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox');
+    await userEvent.clear(input);
+    await userEvent.type(input, 'Hello World');
+    await expect(input).toHaveValue('Hello World');
+  },
+};

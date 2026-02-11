@@ -1,43 +1,63 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { fn, expect, userEvent, within } from 'storybook/test';
 import { Checkbox } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/Checkbox',
+  component: Checkbox,
+  argTypes: {
+    checked: {
+      control: 'boolean',
+      description: 'Whether the checkbox is checked',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the checkbox',
+    },
+    label: {
+      control: 'text',
+      description: 'Label text',
+    },
+    onChange: { action: 'changed' },
+  },
+  args: {
+    checked: false,
+    disabled: false,
+    label: 'I agree to the terms',
+    onChange: fn(),
+  },
 };
 
-export const Overview = () => {
-  const [items, setItems] = useState({
-    anxiety: true,
-    depression: false,
-    insomnia: false,
-    stress: true,
-    fatigue: false,
-  });
+export const Playground = {};
 
-  const toggle = (key) => setItems((prev) => ({ ...prev, [key]: !prev[key] }));
+export const Unchecked = {
+  args: { checked: false, label: 'Unchecked' },
+};
 
-  return (
-    <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 420 }}>
-      <PageHeader
-        title="Checkbox"
-        description="Checkboxes allow users to select one or more items from a set, or toggle a single option on/off."
-      />
+export const Checked = {
+  args: { checked: true, label: 'Checked' },
+};
 
-      <Tip>
-        In the Figma designs, checkboxes appear in health profile multi-select lists for conditions, treatments, and preference selection.
-      </Tip>
+export const DisabledUnchecked = {
+  args: { disabled: true, checked: false, label: 'Disabled unchecked' },
+};
 
-      <Section title="States">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <Checkbox label="Unchecked" checked={false} />
-          <Checkbox label="Checked" checked={true} />
-          <Checkbox label="Disabled unchecked" disabled />
-          <Checkbox label="Disabled checked" checked disabled />
-        </div>
-      </Section>
+export const DisabledChecked = {
+  args: { disabled: true, checked: true, label: 'Disabled checked' },
+};
 
-      <Section title="Multi-select list (interactive)">
+export const MultiSelectList = {
+  render: () => {
+    const [items, setItems] = React.useState({
+      anxiety: true,
+      depression: false,
+      insomnia: false,
+      stress: true,
+      fatigue: false,
+    });
+    const toggle = (key) => setItems((prev) => ({ ...prev, [key]: !prev[key] }));
+    return (
+      <div style={{ maxWidth: 300 }}>
         <p style={{ fontSize: 14, fontWeight: 500, color: '#212020', marginBottom: 8 }}>
           Select any conditions that apply:
         </p>
@@ -48,7 +68,17 @@ export const Overview = () => {
           <Checkbox label="Stress management" checked={items.stress} onChange={() => toggle('stress')} />
           <Checkbox label="Fatigue" checked={items.fatigue} onChange={() => toggle('fatigue')} />
         </div>
-      </Section>
-    </div>
-  );
+      </div>
+    );
+  },
+};
+
+export const CheckInteraction = {
+  args: { checked: false, label: 'Click me', onChange: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkbox = canvas.getByRole('checkbox');
+    await userEvent.click(checkbox);
+    await expect(args.onChange).toHaveBeenCalled();
+  },
 };

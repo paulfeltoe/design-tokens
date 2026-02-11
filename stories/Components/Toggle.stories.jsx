@@ -1,43 +1,86 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { fn, expect, userEvent, within } from 'storybook/test';
 import { Toggle } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/Toggle',
+  component: Toggle,
+  argTypes: {
+    checked: {
+      control: 'boolean',
+      description: 'Whether the toggle is on',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the toggle',
+    },
+    label: {
+      control: 'text',
+      description: 'Text label next to the toggle',
+    },
+    onChange: { action: 'changed' },
+  },
+  args: {
+    checked: false,
+    disabled: false,
+    label: 'Enable reminders',
+    onChange: fn(),
+  },
 };
 
-export const Overview = () => {
-  const [reminder, setReminder] = useState(true);
-  const [notifications, setNotifications] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+export const Playground = {};
 
-  return (
-    <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 420 }}>
-      <PageHeader
-        title="Toggle"
-        description="Toggles switch between on and off states. Use them for binary settings and preferences."
-      />
+export const Off = {
+  args: { checked: false, label: 'Off' },
+};
 
-      <Tip>
-        In the Figma designs, toggles appear in the reminder settings modal and preference screens for enabling/disabling features.
-      </Tip>
+export const On = {
+  args: { checked: true, label: 'On' },
+};
 
-      <Section title="States">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Toggle checked={false} label="Off" />
-          <Toggle checked={true} label="On" />
-          <Toggle checked={false} disabled label="Disabled off" />
-          <Toggle checked={true} disabled label="Disabled on" />
-        </div>
-      </Section>
+export const DisabledOff = {
+  args: { disabled: true, checked: false, label: 'Disabled off' },
+};
 
-      <Section title="Interactive settings">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Toggle checked={reminder} onChange={setReminder} label="Enable reminders" />
-          <Toggle checked={notifications} onChange={setNotifications} label="Push notifications" />
-          <Toggle checked={darkMode} onChange={setDarkMode} label="Dark mode" />
-        </div>
-      </Section>
-    </div>
-  );
+export const DisabledOn = {
+  args: { disabled: true, checked: true, label: 'Disabled on' },
+};
+
+export const SettingsList = {
+  render: () => {
+    const [settings, setSettings] = React.useState({
+      reminders: true,
+      notifications: false,
+      darkMode: false,
+    });
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 300 }}>
+        <Toggle
+          checked={settings.reminders}
+          onChange={(v) => setSettings((s) => ({ ...s, reminders: v }))}
+          label="Enable reminders"
+        />
+        <Toggle
+          checked={settings.notifications}
+          onChange={(v) => setSettings((s) => ({ ...s, notifications: v }))}
+          label="Push notifications"
+        />
+        <Toggle
+          checked={settings.darkMode}
+          onChange={(v) => setSettings((s) => ({ ...s, darkMode: v }))}
+          label="Dark mode"
+        />
+      </div>
+    );
+  },
+};
+
+export const ToggleInteraction = {
+  args: { checked: false, label: 'Click to toggle', onChange: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch');
+    await userEvent.click(toggle);
+    await expect(args.onChange).toHaveBeenCalledWith(true);
+  },
 };

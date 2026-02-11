@@ -1,53 +1,76 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { fn, expect, userEvent, within } from 'storybook/test';
 import { Chip } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/Chip',
+  component: Chip,
+  argTypes: {
+    selected: {
+      control: 'boolean',
+      description: 'Whether the chip is in selected state',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the chip',
+    },
+    children: {
+      control: 'text',
+      description: 'Chip label',
+    },
+    onClick: { action: 'clicked' },
+  },
+  args: {
+    selected: false,
+    disabled: false,
+    children: 'Mental Health',
+    onClick: fn(),
+  },
 };
 
-export const Overview = () => {
-  const [selected, setSelected] = useState({ 'Mental Health': true });
+export const Playground = {};
 
-  const categories = [
-    'Mental Health', 'Physical Health', 'Nutrition',
-    'Finance', 'Work & Career', 'Relationships', 'Pregnancy',
-  ];
+export const Default = {
+  args: { children: 'Physical Health' },
+};
 
-  const toggle = (cat) => setSelected((prev) => ({ ...prev, [cat]: !prev[cat] }));
+export const Selected = {
+  args: { selected: true, children: 'Nutrition' },
+};
 
-  return (
-    <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 720 }}>
-      <PageHeader
-        title="Chip"
-        description="Chips are compact elements used for filtering, selecting categories, or displaying tags. They have outlined and selected states."
-      />
+export const Disabled = {
+  args: { disabled: true, children: 'Finance' },
+};
 
-      <Tip>
-        In the Figma designs, chips appear as horizontal scrolling category filters (e.g. MENTAL HEALTH, PHYSICAL HEALTH, NUTRITION) used to filter browse content and habits.
-      </Tip>
+export const CategoryFilters = {
+  render: () => {
+    const categories = [
+      'Mental Health', 'Physical Health', 'Nutrition',
+      'Finance', 'Work & Career', 'Relationships', 'Pregnancy',
+    ];
+    const [selected, setSelected] = React.useState({ 'Mental Health': true });
+    return (
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {categories.map((cat) => (
+          <Chip
+            key={cat}
+            selected={!!selected[cat]}
+            onClick={() => setSelected((prev) => ({ ...prev, [cat]: !prev[cat] }))}
+          >
+            {cat}
+          </Chip>
+        ))}
+      </div>
+    );
+  },
+};
 
-      <Section title="Default vs Selected">
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <Chip>Default</Chip>
-          <Chip selected>Selected</Chip>
-          <Chip disabled>Disabled</Chip>
-        </div>
-      </Section>
-
-      <Section title="Category filter (interactive)">
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {categories.map((cat) => (
-            <Chip
-              key={cat}
-              selected={!!selected[cat]}
-              onClick={() => toggle(cat)}
-            >
-              {cat}
-            </Chip>
-          ))}
-        </div>
-      </Section>
-    </div>
-  );
+export const ClickInteraction = {
+  args: { children: 'Click Me', onClick: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const chip = canvas.getByRole('button');
+    await userEvent.click(chip);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
 };

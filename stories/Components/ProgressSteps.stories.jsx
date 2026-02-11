@@ -1,45 +1,54 @@
-import React, { useState } from 'react';
-import { ProgressSteps } from '../../src/components';
-import { Button } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
+import React from 'react';
+import { expect, within } from 'storybook/test';
+import { ProgressSteps, Button } from '../../src/components';
 
 export default {
   title: 'Components/ProgressSteps',
+  component: ProgressSteps,
+  argTypes: {
+    currentStep: {
+      control: { type: 'number', min: 0, max: 5 },
+      description: 'Index of the current step (0-based)',
+    },
+  },
+  args: {
+    steps: ['About You', 'Current Conditions', 'Current Treatments'],
+    currentStep: 1,
+  },
+  decorators: [(Story) => <div style={{ maxWidth: 520 }}><Story /></div>],
 };
 
-export const Overview = () => {
-  const [step, setStep] = useState(1);
-  const steps = ['About You', 'Current Conditions', 'Current Treatments'];
+export const Playground = {};
 
-  return (
-    <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 520 }}>
-      <PageHeader
-        title="ProgressSteps"
-        description="Progress steps indicate the user's position in a multi-step flow. Completed steps show a checkmark, the current step is highlighted, and future steps are dimmed."
-      />
+export const StepOne = {
+  args: { currentStep: 0 },
+};
 
-      <Tip>
-        In the Figma designs, progress steps appear at the top of the health risk assessment (HRA) flow with sections like "About You", "Current Conditions", "Current Treatments".
-      </Tip>
+export const StepTwo = {
+  args: { currentStep: 1 },
+};
 
-      <Section title="Step states">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-          <div>
-            <p style={{ fontSize: 13, color: '#666', marginBottom: 8 }}>Step 1 of 3:</p>
-            <ProgressSteps steps={steps} currentStep={0} />
-          </div>
-          <div>
-            <p style={{ fontSize: 13, color: '#666', marginBottom: 8 }}>Step 2 of 3:</p>
-            <ProgressSteps steps={steps} currentStep={1} />
-          </div>
-          <div>
-            <p style={{ fontSize: 13, color: '#666', marginBottom: 8 }}>All completed:</p>
-            <ProgressSteps steps={steps} currentStep={3} />
-          </div>
-        </div>
-      </Section>
+export const StepThree = {
+  args: { currentStep: 2 },
+};
 
-      <Section title="Interactive demo">
+export const AllCompleted = {
+  args: { currentStep: 3 },
+};
+
+export const FourSteps = {
+  args: {
+    steps: ['Profile', 'Health', 'Goals', 'Review'],
+    currentStep: 2,
+  },
+};
+
+export const InteractiveDemo = {
+  render: () => {
+    const steps = ['About You', 'Current Conditions', 'Current Treatments'];
+    const [step, setStep] = React.useState(1);
+    return (
+      <div>
         <ProgressSteps steps={steps} currentStep={step} />
         <div style={{ display: 'flex', gap: 12, marginTop: 24 }}>
           <Button
@@ -58,7 +67,20 @@ export const Overview = () => {
             Next
           </Button>
         </div>
-      </Section>
-    </div>
-  );
+      </div>
+    );
+  },
+};
+
+export const RendersStepLabels = {
+  args: {
+    steps: ['Step A', 'Step B', 'Step C'],
+    currentStep: 0,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText('Step A')).toBeInTheDocument();
+    await expect(canvas.getByText('Step B')).toBeInTheDocument();
+    await expect(canvas.getByText('Step C')).toBeInTheDocument();
+  },
 };

@@ -1,47 +1,78 @@
 import React from 'react';
+import { expect, within } from 'storybook/test';
 import { Avatar } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/Avatar',
+  component: Avatar,
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'base', 'lg', 'xl'],
+      description: 'Avatar size',
+    },
+    name: {
+      control: 'text',
+      description: 'Full name (used for initials fallback)',
+    },
+    src: {
+      control: 'text',
+      description: 'Image URL',
+    },
+    alt: {
+      control: 'text',
+      description: 'Image alt text',
+    },
+  },
+  args: {
+    size: 'base',
+    name: 'Jane Doe',
+    src: '',
+    alt: '',
+  },
 };
 
-export const Overview = () => (
-  <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 720 }}>
-    <PageHeader
-      title="Avatar"
-      description="Avatars represent users or practitioners with an image or initials fallback. Available in multiple sizes."
-    />
+export const Playground = {};
 
-    <Tip>
-      In the Figma designs, avatars appear on practitioner profiles, chat interfaces, and appointment booking screens.
-    </Tip>
+export const Small = {
+  args: { size: 'sm', name: 'Jane Doe' },
+};
 
-    <Section title="Sizes (with initials fallback)">
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-        <Avatar name="Jane Doe" size="sm" />
-        <Avatar name="Jane Doe" size="base" />
-        <Avatar name="Jane Doe" size="lg" />
-        <Avatar name="Jane Doe" size="xl" />
-      </div>
-    </Section>
+export const Base = {
+  args: { size: 'base', name: 'Jane Doe' },
+};
 
-    <Section title="With images">
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-        <Avatar src="https://i.pravatar.cc/72?img=1" name="Dr. Smith" size="sm" />
-        <Avatar src="https://i.pravatar.cc/72?img=2" name="Dr. Jones" size="base" />
-        <Avatar src="https://i.pravatar.cc/72?img=3" name="Dr. Williams" size="lg" />
-        <Avatar src="https://i.pravatar.cc/112?img=4" name="Dr. Brown" size="xl" />
-      </div>
-    </Section>
+export const Large = {
+  args: { size: 'lg', name: 'Jane Doe' },
+};
 
-    <Section title="Initials from names">
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-        <Avatar name="Alice" size="base" />
-        <Avatar name="Bob Chen" size="base" />
-        <Avatar name="Dr. Maria Santos" size="base" />
-        <Avatar size="base" />
-      </div>
-    </Section>
-  </div>
-);
+export const ExtraLarge = {
+  args: { size: 'xl', name: 'Jane Doe' },
+};
+
+export const WithImage = {
+  args: { src: 'https://i.pravatar.cc/112?img=3', name: 'Dr. Williams', size: 'lg' },
+};
+
+export const NoName = {
+  args: { name: '', size: 'base' },
+};
+
+export const AllSizes = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+      <Avatar name="Jane Doe" size="sm" />
+      <Avatar name="Jane Doe" size="base" />
+      <Avatar name="Jane Doe" size="lg" />
+      <Avatar name="Jane Doe" size="xl" />
+    </div>
+  ),
+};
+
+export const InitialsFallback = {
+  args: { name: 'Bob Chen', size: 'lg' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText('BC')).toBeInTheDocument();
+  },
+};

@@ -1,54 +1,78 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { fn, expect, userEvent, within } from 'storybook/test';
 import { BottomNav } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
+
+const defaultItems = [
+  { id: 'today', label: 'Today', icon: '\u2302' },
+  { id: 'services', label: 'Services', icon: '\u2726' },
+  { id: 'move', label: 'Move', icon: '\u2665' },
+  { id: 'mind', label: 'Mind', icon: '\u263A' },
+  { id: 'browse', label: 'Browse', icon: '\u2630' },
+];
 
 export default {
   title: 'Components/BottomNav',
+  component: BottomNav,
+  argTypes: {
+    activeItem: {
+      control: 'select',
+      options: ['today', 'services', 'move', 'mind', 'browse'],
+      description: 'Currently active tab ID',
+    },
+    onChange: { action: 'tab-changed' },
+  },
+  args: {
+    items: defaultItems,
+    activeItem: 'today',
+    onChange: fn(),
+  },
+  decorators: [(Story) => <div style={{ maxWidth: 420 }}><Story /></div>],
 };
 
-export const Overview = () => {
-  const [active, setActive] = useState('today');
+export const Playground = {};
 
-  const items = [
-    { id: 'today', label: 'Today', icon: '\u2302' },
-    { id: 'services', label: 'Services', icon: '\u2726' },
-    { id: 'move', label: 'Move', icon: '\u2665' },
-    { id: 'mind', label: 'Mind', icon: '\u263A' },
-    { id: 'browse', label: 'Browse', icon: '\u2630' },
-  ];
+export const Today = {
+  args: { activeItem: 'today' },
+};
 
-  return (
-    <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 420 }}>
-      <PageHeader
-        title="BottomNav"
-        description="Bottom navigation provides quick access to top-level destinations. It appears at the bottom of the screen with icon + label items."
-      />
+export const Services = {
+  args: { activeItem: 'services' },
+};
 
-      <Tip>
-        In the Figma designs, the bottom navigation appears on every main screen with tabs: Today, Services, Move, Mind, Browse.
-      </Tip>
+export const Move = {
+  args: { activeItem: 'move' },
+};
 
-      <Section title="Interactive">
-        <div style={{ border: '1px solid #E8E6E1', borderRadius: 12, overflow: 'hidden' }}>
-          <div style={{ height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FAFAF5' }}>
-            <span style={{ color: '#9E9A90', fontSize: 14 }}>
-              Active tab: <strong>{active}</strong>
-            </span>
-          </div>
-          <BottomNav items={items} activeItem={active} onChange={setActive} />
+export const Mind = {
+  args: { activeItem: 'mind' },
+};
+
+export const Browse = {
+  args: { activeItem: 'browse' },
+};
+
+export const InPhoneFrame = {
+  render: () => {
+    const [active, setActive] = React.useState('today');
+    return (
+      <div style={{ border: '1px solid #E8E6E1', borderRadius: 12, overflow: 'hidden', maxWidth: 375 }}>
+        <div style={{ height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FAFAF5' }}>
+          <span style={{ color: '#9E9A90', fontSize: 14 }}>
+            Active tab: <strong>{active}</strong>
+          </span>
         </div>
-      </Section>
+        <BottomNav items={defaultItems} activeItem={active} onChange={setActive} />
+      </div>
+    );
+  },
+};
 
-      <Section title="Different active states">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ border: '1px solid #E8E6E1', borderRadius: 12, overflow: 'hidden' }}>
-            <BottomNav items={items} activeItem="services" />
-          </div>
-          <div style={{ border: '1px solid #E8E6E1', borderRadius: 12, overflow: 'hidden' }}>
-            <BottomNav items={items} activeItem="mind" />
-          </div>
-        </div>
-      </Section>
-    </div>
-  );
+export const TabSwitchInteraction = {
+  args: { activeItem: 'today', onChange: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const servicesTab = canvas.getByText('Services');
+    await userEvent.click(servicesTab);
+    await expect(args.onChange).toHaveBeenCalledWith('services');
+  },
 };

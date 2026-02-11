@@ -1,58 +1,94 @@
 import React from 'react';
+import { fn, expect, userEvent, within } from 'storybook/test';
 import { IconButton } from '../../src/components';
-import { PageHeader, Section, Tip } from '../shared/DocBlock';
 
 export default {
   title: 'Components/IconButton',
+  component: IconButton,
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['ghost', 'filled', 'outlined'],
+      description: 'Visual style',
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'base', 'lg'],
+      description: 'Button size',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the button',
+    },
+    label: {
+      control: 'text',
+      description: 'Accessible label (aria-label)',
+    },
+    children: {
+      control: 'text',
+      description: 'Icon content (text/emoji/symbol)',
+    },
+    onClick: { action: 'clicked' },
+  },
+  args: {
+    variant: 'ghost',
+    size: 'base',
+    disabled: false,
+    label: 'Close',
+    children: '\u00D7',
+    onClick: fn(),
+  },
 };
 
-export const Overview = () => (
-  <div style={{ fontFamily: 'Roboto, system-ui, sans-serif', maxWidth: 720 }}>
-    <PageHeader
-      title="IconButton"
-      description="Icon buttons are compact buttons for icon-only actions. They support ghost, filled, and outlined variants."
-    />
+export const Playground = {};
 
-    <Tip>
-      In the Figma designs, icon buttons appear as back arrows, close (X) buttons, filter icons, and action icons in headers and toolbars.
-    </Tip>
+export const Ghost = {
+  args: { variant: 'ghost', label: 'Back', children: '\u2039' },
+};
 
-    <Section title="Variants">
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <IconButton variant="ghost" label="Back">&#8249;</IconButton>
-        <IconButton variant="filled" label="Filter">&#9776;</IconButton>
-        <IconButton variant="outlined" label="Close">&times;</IconButton>
-      </div>
-    </Section>
+export const Filled = {
+  args: { variant: 'filled', label: 'Menu', children: '\u2630' },
+};
 
-    <Section title="Sizes">
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <IconButton size="sm" variant="filled" label="Small">&times;</IconButton>
-        <IconButton size="base" variant="filled" label="Base">&times;</IconButton>
-        <IconButton size="lg" variant="filled" label="Large">&times;</IconButton>
-      </div>
-    </Section>
+export const Outlined = {
+  args: { variant: 'outlined', label: 'Close', children: '\u00D7' },
+};
 
-    <Section title="Header pattern">
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '8px 4px',
-        borderBottom: '1px solid #E8E6E1',
-      }}>
-        <IconButton variant="ghost" label="Back">&#8249;</IconButton>
-        <span style={{ fontWeight: 600, fontSize: 16 }}>Health Profile</span>
-        <IconButton variant="ghost" label="Close">&times;</IconButton>
-      </div>
-    </Section>
+export const Small = {
+  args: { size: 'sm', variant: 'filled', children: '\u00D7' },
+};
 
-    <Section title="Disabled">
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <IconButton variant="ghost" disabled label="Disabled back">&#8249;</IconButton>
-        <IconButton variant="filled" disabled label="Disabled filter">&#9776;</IconButton>
-        <IconButton variant="outlined" disabled label="Disabled close">&times;</IconButton>
-      </div>
-    </Section>
-  </div>
-);
+export const Large = {
+  args: { size: 'lg', variant: 'filled', children: '\u00D7' },
+};
+
+export const Disabled = {
+  args: { disabled: true, variant: 'filled', children: '\u00D7' },
+};
+
+export const HeaderPattern = {
+  render: () => (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '8px 4px',
+      borderBottom: '1px solid #E8E6E1',
+      maxWidth: 360,
+    }}>
+      <IconButton variant="ghost" label="Back">{'\u2039'}</IconButton>
+      <span style={{ fontWeight: 600, fontSize: 16 }}>Health Profile</span>
+      <IconButton variant="ghost" label="Close">{'\u00D7'}</IconButton>
+    </div>
+  ),
+};
+
+export const ClickInteraction = {
+  args: { label: 'Test click', children: '\u00D7', onClick: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
