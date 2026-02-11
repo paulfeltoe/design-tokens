@@ -280,6 +280,25 @@ Layering system to avoid z-index conflicts:
 | `--z-index-tooltip`       | 1600  | Tooltips             |
 | `--z-index-notification`  | 1700  | Toast notifications  |
 
+## Container Max-Widths
+
+Use these for constraining content width. Apply as `max-width` on a wrapper element and center with `margin: 0 auto`.
+
+| Token            | Value   | When to use                                      |
+|------------------|---------|--------------------------------------------------|
+| `--container-sm` | 640px   | Narrow content: forms, login pages, text columns  |
+| `--container-md` | 768px   | Articles, card grids, settings panels             |
+| `--container-lg` | 1024px  | Dashboards, wide card layouts                     |
+| `--container-xl` | 1280px  | Full-width pages, data tables                     |
+
+```css
+.page-wrapper {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+```
+
 ## Breakpoints
 
 | Token              | Value  | Devices              |

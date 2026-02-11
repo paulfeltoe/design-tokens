@@ -82,8 +82,8 @@
           "tertiary": { "$type": "color", "$value": "{color.gray.400}" },
           "disabled": { "$type": "color", "$value": "{color.gray.200}" },
           "inverse": { "$type": "color", "$value": "{color.base.white}" },
-          "link": { "$type": "color", "$value": "{color.primary.500}" },
-          "link-hover": { "$type": "color", "$value": "{color.primary.600}" },
+          "link": { "$type": "color", "$value": "{color.primary.300}" },
+          "link-hover": { "$type": "color", "$value": "{color.primary.400}" },
           "error": { "$type": "color", "$value": "{color.error.500}" },
           "success": { "$type": "color", "$value": "{color.success.600}" },
           "warning": { "$type": "color", "$value": "{color.warning.600}" }
@@ -102,13 +102,13 @@
           "strong": { "$type": "color", "$value": "{color.gray.400}" },
           "subtle": { "$type": "color", "$value": "{color.gray.100}" },
           "disabled": { "$type": "color", "$value": "{color.gray.200}" },
-          "focus": { "$type": "color", "$value": "{color.primary.500}" },
+          "focus": { "$type": "color", "$value": "{color.primary.300}" },
           "error": { "$type": "color", "$value": "{color.error.500}" }
         },
         "interactive": {
-          "primary": { "$type": "color", "$value": "{color.primary.500}" },
-          "primary-hover": { "$type": "color", "$value": "{color.primary.600}" },
-          "primary-active": { "$type": "color", "$value": "{color.primary.700}" },
+          "primary": { "$type": "color", "$value": "{color.primary.300}" },
+          "primary-hover": { "$type": "color", "$value": "{color.primary.400}" },
+          "primary-active": { "$type": "color", "$value": "{color.primary.500}" },
           "primary-disabled": { "$type": "color", "$value": "{color.gray.200}" },
           "secondary": { "$type": "color", "$value": "{color.gray.500}" },
           "secondary-hover": { "$type": "color", "$value": "{color.gray.600}" },
@@ -312,6 +312,12 @@
     "lg": { "$type": "dimension", "$value": "1024px" },
     "xl": { "$type": "dimension", "$value": "1280px" },
     "2xl": { "$type": "dimension", "$value": "1536px" }
+  },
+  "container": {
+    "sm": { "$type": "dimension", "$value": "640px", "$description": "Small container — forms, narrow content" },
+    "md": { "$type": "dimension", "$value": "768px", "$description": "Medium container — articles, card grids" },
+    "lg": { "$type": "dimension", "$value": "1024px", "$description": "Large container — dashboards, wide layouts" },
+    "xl": { "$type": "dimension", "$value": "1280px", "$description": "Extra-large container — full-width pages" }
   },
   "z-index": {
     "base": { "$type": "number", "$value": 0 },
