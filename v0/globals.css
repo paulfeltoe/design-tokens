@@ -291,8 +291,8 @@
 /* -------------------------------------------------------------------- */
 /* Dark Mode Semantic Overrides                                          */
 /* -------------------------------------------------------------------- */
-@media (prefers-color-scheme: dark) {
-  :root {
+.dark,
+[data-theme="dark"] {
     /* Text */
     --color-text-primary: var(--color-base-warm);
     --color-text-secondary: var(--color-base-sandstone);
@@ -330,7 +330,6 @@
     --color-interactive-secondary: var(--color-gray-300);
     --color-interactive-secondary-hover: var(--color-gray-200);
     --color-interactive-secondary-active: var(--color-gray-100);
-  }
 }
 
 /* -------------------------------------------------------------------- */

@@ -38,7 +38,7 @@ Six color scales. Use the **middle values (400–600)** as the default, lighter 
 
 ### Semantic colors — use these first
 
-Instead of picking a raw palette value, prefer the semantic aliases. They auto-switch between light and dark mode via `prefers-color-scheme`.
+Instead of picking a raw palette value, prefer the semantic aliases. They switch between light and dark mode when the `.dark` or `[data-theme="dark"]` class/attribute is applied to the root element.
 
 **Text colors:**
 - `--color-text-primary` — Default body text (light: charcoal, dark: warm)
@@ -312,5 +312,5 @@ Use in media queries (mobile-first):
 8. **Mobile-first responsive design** — start with the smallest breakpoint and add `min-width` media queries.
 9. **Focus states use `--color-border-focus`** — every interactive element must have a visible focus indicator.
 10. **Disabled states use the `*-disabled` tokens** — reduced opacity alone is not sufficient.
-11. **Dark mode is automatic** — semantic tokens switch via `prefers-color-scheme: dark`. Use semantic tokens and dark mode works for free.
+11. **Dark mode uses a class toggle** — add `.dark` or `[data-theme="dark"]` to the root element. Semantic tokens switch automatically when the class is present.
 12. **Use `--gradient-oomph`** for brand gradient accents (Peach-to-Sky).
