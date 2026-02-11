@@ -30,7 +30,7 @@ Six color scales. Use the **middle values (400–600)** as the default, lighter 
 | Scale       | Variable pattern             | Steps   | Purpose                          |
 |-------------|------------------------------|---------|----------------------------------|
 | **Gray**    | `--color-gray-{100–600}`     | 100, 150, 200, 300, 400, 500, 600 | 100–150: backgrounds, hover fills. 200: borders, disabled. 300–400: contrast, dividers. 500: secondary text. 600: dark mode surfaces. |
-| **Primary** | `--color-primary-{100–800}`  | 100–800 | Warm orange brand, CTAs, links, focus rings. 500 (Pumpkin) = light mode accent, 300 (Peach) = dark mode accent. |
+| **Primary** | `--color-primary-{100–800}`  | 100–800 | Warm peach brand, CTAs, links, focus rings. |
 | **Success** | `--color-success-{50–800}`   | 50–800  | Confirmations, positive states. 500 (Peppermint) = primary success. |
 | **Warning** | `--color-warning-{50–800}`   | 50–800  | Cautions, pending states         |
 | **Error**   | `--color-error-{50–800}`     | 50–800  | Errors, destructive actions. 500 (Alarm) = light mode, 300 (Alert) = dark mode. |
