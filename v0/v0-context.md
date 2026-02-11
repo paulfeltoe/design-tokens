@@ -150,39 +150,39 @@ Use these combinations for heading and body text:
 
 ```css
 /* H1 */
-font-family: var(--font-family-sans);
+font-family: var(--font-family-serif);
 font-size: var(--font-size-5xl);      /* 48px */
 font-weight: var(--font-weight-bold);
 line-height: var(--line-height-tight);
 letter-spacing: var(--letter-spacing-tight);
 
 /* H2 */
-font-family: var(--font-family-sans);
+font-family: var(--font-family-serif);
 font-size: var(--font-size-4xl);      /* 36px */
 font-weight: var(--font-weight-bold);
 line-height: var(--line-height-tight);
 letter-spacing: var(--letter-spacing-tight);
 
 /* H3 */
-font-family: var(--font-family-sans);
+font-family: var(--font-family-serif);
 font-size: var(--font-size-3xl);      /* 30px */
 font-weight: var(--font-weight-semibold);
 line-height: var(--line-height-snug);
 
 /* H4 */
-font-family: var(--font-family-sans);
+font-family: var(--font-family-serif);
 font-size: var(--font-size-2xl);      /* 24px */
 font-weight: var(--font-weight-semibold);
 line-height: var(--line-height-snug);
 
 /* H5 */
-font-family: var(--font-family-sans);
+font-family: var(--font-family-serif);
 font-size: var(--font-size-xl);       /* 20px */
 font-weight: var(--font-weight-semibold);
 line-height: var(--line-height-normal);
 
 /* H6 */
-font-family: var(--font-family-sans);
+font-family: var(--font-family-serif);
 font-size: var(--font-size-lg);       /* 18px */
 font-weight: var(--font-weight-semibold);
 line-height: var(--line-height-normal);
@@ -308,7 +308,7 @@ Use in media queries (mobile-first):
 4. **Border radius default is `--border-radius-base` (8px)** — use this for buttons, inputs, and cards unless a different size is explicitly needed.
 5. **Shadows = elevation** — flat elements have no shadow, raised elements get `--shadow-sm` to `--shadow-md`, floating elements get `--shadow-lg` to `--shadow-xl`. Shadow color is brand charcoal, not pure black.
 6. **Transitions always use token durations and easings** — don't use `0.3s ease`.
-7. **Use `--font-family-sans` (Roboto) for all UI text** — only use mono (Roboto Mono) for code and serif (Poynter) for editorial.
+7. **Use `--font-family-serif` (Poynter) for all headings** and `--font-family-sans` (Roboto) for body/UI text — only use mono (Roboto Mono) for code.
 8. **Mobile-first responsive design** — start with the smallest breakpoint and add `min-width` media queries.
 9. **Focus states use `--color-border-focus`** — every interactive element must have a visible focus indicator.
 10. **Disabled states use the `*-disabled` tokens** — reduced opacity alone is not sufficient.
