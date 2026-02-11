@@ -1,14 +1,11 @@
 # Design System Context for V0
 
-## Overview
-
-This is a custom design system built on CSS custom properties (variables). All values come from a single token source. When generating UI, **always use the CSS variables defined in `globals.css`** instead of hardcoded values.
-
 ## How to use
 
 1. Import `globals.css` at the root of the project (it's already included if the project was scaffolded from this repo).
 2. Reference tokens as CSS variables: `var(--color-primary-600)`, `var(--spacing-4)`, etc.
 3. Use semantic variables for anything user-facing (text, backgrounds, borders) so the UI stays consistent.
+4. **Always use the CSS variables defined in `globals.css`** instead of hardcoded values.
 
 ## Color System
 
