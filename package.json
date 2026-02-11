@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@storybook/addon-a11y": "^10.2.8",
+    "@storybook/addon-docs": "^10.2.8",
     "@storybook/addon-themes": "^10.2.8",
     "@storybook/react-vite": "^10.2.8",
     "react": "^19.0.0",
