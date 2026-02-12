@@ -1,13 +1,13 @@
 import React from 'react';
 import { StickyFooter, Button } from '../../src/components';
-import { PageHeader, Section, Tip, CodeBlock } from '../shared/DocBlock';
+import { PageHeader, Section, Tip, Warning, Guidelines, CodeBlock } from '../shared/DocBlock';
 
 export default {
-  title: 'Docs/StickyFooter',
+  title: 'Components/StickyFooter',
   parameters: { layout: 'fullscreen' },
 };
 
-export const AllVariants = {
+export const Docs = {
   render: () => (
     <div style={{ padding: 32, maxWidth: 720 }}>
       <PageHeader
@@ -15,7 +15,23 @@ export const AllVariants = {
         description="A fixed or absolute-positioned footer with a gradient fade from transparent to white. Used for persistent CTA buttons at the bottom of pages and sheets."
       />
 
-      <Section title="Single CTA" description="The simplest pattern: one primary action.">
+      <Section title="When to use a Sticky Footer">
+        <Guidelines
+          doItems={[
+            'Pages with a clear primary action (book, continue, submit)',
+            'Multi-step flows where the CTA needs to be always visible',
+            'Confirmation screens with one or two actions',
+            'Any screen where scrolling content could push CTAs off-screen',
+          ]}
+          dontItems={[
+            'Pages with no primary action',
+            'Selection interfaces where the action is inline (e.g., tapping a provider card)',
+            'Modals that already have their own footer',
+          ]}
+        />
+      </Section>
+
+      <Section title="Single CTA" description="Use when there is only one clear action and no alternative is needed.">
         <div style={{ height: 300, position: 'relative', border: '1px solid #e5e5e5', borderRadius: 8, overflow: 'hidden', background: '#FFFCFA' }}>
           <div style={{ padding: 20 }}>
             <p style={{ color: '#212020', fontSize: 14 }}>Page content scrolls behind the footer.</p>
@@ -26,7 +42,7 @@ export const AllVariants = {
         </div>
       </Section>
 
-      <Section title="Primary + Ghost" description="Main action paired with a skip/cancel option.">
+      <Section title="Primary + Ghost (stacked)" description="Main action paired with a skip/cancel option. Most common pattern in intake flows.">
         <div style={{ height: 300, position: 'relative', border: '1px solid #e5e5e5', borderRadius: 8, overflow: 'hidden', background: '#FFFCFA' }}>
           <div style={{ padding: 20 }}>
             <p style={{ color: '#212020', fontSize: 14 }}>Intake flow content above.</p>
@@ -38,7 +54,7 @@ export const AllVariants = {
         </div>
       </Section>
 
-      <Section title="Primary + Secondary" description="Two prominent actions of equal importance.">
+      <Section title="Primary + Secondary (stacked)" description="Two prominent actions of equal importance. Use when both options are valid next steps.">
         <div style={{ height: 300, position: 'relative', border: '1px solid #e5e5e5', borderRadius: 8, overflow: 'hidden', background: '#FFFCFA' }}>
           <div style={{ padding: 20 }}>
             <p style={{ color: '#212020', fontSize: 14 }}>Confirmation screen content.</p>
@@ -50,7 +66,14 @@ export const AllVariants = {
         </div>
       </Section>
 
-      <Tip>The gradient fades from fully transparent at the top to opaque white at the bottom, so content scrolling behind feels seamless. Use <code>position="absolute"</code> inside relative containers, or <code>position="fixed"</code> (default) for page-level footers.</Tip>
+      <Section title="Visual Rules">
+        <Warning>
+          The gradient fades from transparent to opaque white, transitioning at 28% from the top.
+          Spacing: <strong>40px bottom</strong> padding (mobile safe area), <strong>20px top</strong>, <strong>20px horizontal</strong>.
+          The footer is always <strong>375px max width</strong>, centered. Buttons inside should always be <strong>full width</strong>.
+        </Warning>
+        <Tip>Use <code>position="absolute"</code> inside relative containers (like in Storybook demos), or <code>position="fixed"</code> (default) for real page-level footers.</Tip>
+      </Section>
 
       <Section title="Usage">
         <CodeBlock

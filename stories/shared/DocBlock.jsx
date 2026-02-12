@@ -91,6 +91,34 @@ export const Section = ({ title, description, children }) => (
   </div>
 );
 
+const listItemStyle = {
+  ...base,
+  fontSize: 13,
+  padding: '3px 0',
+  lineHeight: 1.5,
+};
+
+export const Guidelines = ({ doItems = [], dontItems = [] }) => (
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+    {doItems.length > 0 && (
+      <div style={{ backgroundColor: '#f0fdf4', borderRadius: 6, padding: '12px 16px', borderLeft: '3px solid #22c55e' }}>
+        <div style={{ ...base, fontSize: 13, fontWeight: 600, color: '#166534', marginBottom: 6 }}>When to use</div>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          {doItems.map((item, i) => <li key={i} style={listItemStyle}>{item}</li>)}
+        </ul>
+      </div>
+    )}
+    {dontItems.length > 0 && (
+      <div style={{ backgroundColor: '#fef2f2', borderRadius: 6, padding: '12px 16px', borderLeft: '3px solid #ef4444' }}>
+        <div style={{ ...base, fontSize: 13, fontWeight: 600, color: '#991b1b', marginBottom: 6 }}>When NOT to use</div>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          {dontItems.map((item, i) => <li key={i} style={listItemStyle}>{item}</li>)}
+        </ul>
+      </div>
+    )}
+  </div>
+);
+
 export const PageHeader = ({ title, description }) => (
   <div style={{ marginBottom: 32 }}>
     <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>{title}</h2>

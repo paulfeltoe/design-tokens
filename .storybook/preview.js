@@ -5,6 +5,25 @@ import "../v0/globals.css";
 const preview = {
   parameters: {
     layout: "padded",
+    options: {
+      storySort: {
+        order: [
+          "Introduction",
+          "Colors",
+          "Spacing",
+          "Typography",
+          "Borders",
+          "Shadows",
+          "Transitions",
+          "Primitives",
+          "Components",
+          [
+            "*",
+            ["Docs", "*"],
+          ],
+        ],
+      },
+    },
   },
   decorators: [
     withThemeByClassName({

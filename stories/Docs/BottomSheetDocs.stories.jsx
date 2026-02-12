@@ -1,21 +1,39 @@
 import React from 'react';
 import { BottomSheet, Button, ListItem } from '../../src/components';
-import { PageHeader, Section, Tip, CodeBlock } from '../shared/DocBlock';
+import { PageHeader, Section, Tip, Warning, Guidelines, CodeBlock } from '../shared/DocBlock';
 
 export default {
-  title: 'Docs/BottomSheet',
+  title: 'Components/BottomSheet',
   parameters: { layout: 'fullscreen' },
 };
 
-export const AllVariants = {
+export const Docs = {
   render: () => (
     <div style={{ padding: 32, maxWidth: 720 }}>
       <PageHeader
         title="BottomSheet"
-        description="A modal overlay that slides up from the bottom of the viewport. Used for focused tasks like selections, forms, or confirmations. Includes an optional header with back/close buttons."
+        description="A modal overlay that slides up from the bottom of the viewport. Used for focused tasks like selections, forms, or confirmations. Includes a 65px header with optional back/close buttons."
       />
 
-      <Section title="With Close Button" description="The most common pattern: a title and close action.">
+      <Section title="When to use a Bottom Sheet">
+        <Guidelines
+          doItems={[
+            'Quick selections (date, time, provider)',
+            'Temporary overlays that don\'t need full screen',
+            'Forms that are short enough to not scroll much',
+            'Contextual actions triggered from a page',
+            'Secondary flows within a primary flow',
+          ]}
+          dontItems={[
+            'Multi-step flows (use full page instead)',
+            'Complex forms that need full focus',
+            'Primary app content',
+            'When the user needs the context behind the sheet',
+          ]}
+        />
+      </Section>
+
+      <Section title="With Close Button" description="The most common pattern: a title and close action. Use for standalone modals.">
         <div style={{ height: 400, position: 'relative', border: '1px solid #e5e5e5', borderRadius: 8, overflow: 'hidden' }}>
           <BottomSheet open title="Select a Provider" onClose={() => {}}>
             <p style={{ margin: 0, color: '#636362', fontSize: 14 }}>Content area with scrollable options.</p>
@@ -23,7 +41,7 @@ export const AllVariants = {
         </div>
       </Section>
 
-      <Section title="With Back and Close" description="Use when the sheet has navigation depth (e.g., multi-step flows).">
+      <Section title="With Back and Close" description="Use when the sheet has navigation depth (e.g., drill-down within a selection flow).">
         <div style={{ height: 400, position: 'relative', border: '1px solid #e5e5e5', borderRadius: 8, overflow: 'hidden' }}>
           <BottomSheet open title="Choose Time" onBack={() => {}} onClose={() => {}}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
@@ -34,6 +52,7 @@ export const AllVariants = {
             </div>
           </BottomSheet>
         </div>
+        <Tip>Use back + close when the user can navigate deeper within the sheet. Use close-only for single-level overlays.</Tip>
       </Section>
 
       <Section title="With List Content" description="Sheets work well with ListItem components for selection interfaces.">
@@ -49,7 +68,12 @@ export const AllVariants = {
         </div>
       </Section>
 
-      <Tip>The BottomSheet uses a semi-transparent overlay. The <code>open</code> prop controls visibility. Content area scrolls independently.</Tip>
+      <Section title="Structure">
+        <Warning>
+          Bottom sheets always have: white background, rounded top corners (8px), 65px header height, and a semi-transparent overlay behind.
+          The content area uses the Smoke (#F4F4F4) background with 24px padding. The header uses white background with a bottom border.
+        </Warning>
+      </Section>
 
       <Section title="Usage">
         <CodeBlock
@@ -60,6 +84,11 @@ export const AllVariants = {
           label="Basic"
           code={`<BottomSheet open={isOpen} title="Select a Provider" onClose={handleClose}>
   <ProviderList />
+</BottomSheet>
+
+// With back navigation
+<BottomSheet open={isOpen} title="Choose Time" onBack={goBack} onClose={handleClose}>
+  <TimeSlotGrid />
 </BottomSheet>`}
         />
       </Section>
