@@ -6,6 +6,13 @@ export default {
   title: 'Components/IconButton',
   component: IconButton,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Square buttons for icon-only actions. Three visual variants (ghost, filled, outlined) and three sizes. Every IconButton must have an aria-label.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

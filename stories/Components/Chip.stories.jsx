@@ -6,6 +6,13 @@ export default {
   title: 'Components/Chip',
   component: Chip,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Compact selectable pills for filtering, tagging, or choosing from categories. Chips are inline and feel lighter than buttons.',
+      },
+    },
+  },
   argTypes: {
     selected: {
       control: 'boolean',

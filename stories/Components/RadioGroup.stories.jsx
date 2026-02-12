@@ -6,6 +6,13 @@ export default {
   title: 'Components/RadioGroup',
   component: RadioGroup,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Single selection from a list of options. Use when the user must pick exactly one item from 2-5 mutually exclusive choices.',
+      },
+    },
+  },
   argTypes: {
     label: {
       control: 'text',

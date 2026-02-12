@@ -6,6 +6,13 @@ export default {
   title: 'Components/TextInput',
   component: TextInput,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A labeled text field for collecting free-form user input. Supports multiple HTML input types and inline error messaging.',
+      },
+    },
+  },
   argTypes: {
     label: {
       control: 'text',

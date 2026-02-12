@@ -6,6 +6,13 @@ export default {
   title: 'Components/ListItem',
   component: ListItem,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A versatile row component for navigation lists, settings, and content browsing. Supports leading/trailing slots for avatars, badges, and other elements.',
+      },
+    },
+  },
   argTypes: {
     title: {
       control: 'text',

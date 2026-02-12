@@ -6,6 +6,13 @@ export default {
   title: 'Components/ProgressSteps',
   component: ProgressSteps,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A linear step indicator for multi-step flows. Shows completed, current, and pending states to orient users within a process.',
+      },
+    },
+  },
   argTypes: {
     currentStep: {
       control: { type: 'number', min: 0, max: 5 },

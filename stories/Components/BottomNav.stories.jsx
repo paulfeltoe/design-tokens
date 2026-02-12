@@ -14,6 +14,13 @@ export default {
   title: 'Components/BottomNav',
   component: BottomNav,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Primary app navigation tab bar. Fixed at the bottom of the viewport. Use for top-level sections of the app with 3-5 tabs.',
+      },
+    },
+  },
   argTypes: {
     activeItem: {
       control: 'select',

@@ -6,6 +6,13 @@ export default {
   title: 'Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A toggle for selecting one or more options from a list. Use checkboxes when users can pick multiple items or need to opt in/out of a single setting.',
+      },
+    },
+  },
   argTypes: {
     checked: {
       control: 'boolean',
