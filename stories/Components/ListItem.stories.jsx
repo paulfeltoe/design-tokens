@@ -6,6 +6,13 @@ export default {
   title: 'Components/ListItem',
   component: ListItem,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A versatile row component for navigation lists, settings, and content browsing. Supports leading/trailing slots for avatars, badges, and other elements.',
+      },
+    },
+  },
   argTypes: {
     title: {
       control: 'text',
@@ -40,7 +47,6 @@ export default {
   decorators: [(Story) => <div style={{ maxWidth: 420 }}><Story /></div>],
 };
 
-export const Playground = {};
 
 export const Basic = {
   args: { title: 'Breathing Exercise', subtitle: '4-7-8 technique', showChevron: true },

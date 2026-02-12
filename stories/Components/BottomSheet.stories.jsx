@@ -33,16 +33,6 @@ export default {
   },
 };
 
-export const Playground = {
-  render: (args) => (
-    <div style={{ height: 500, position: 'relative' }}>
-      <BottomSheet {...args}>
-        <p style={{ margin: 0, color: '#636362', fontSize: 14 }}>Sheet content goes here.</p>
-      </BottomSheet>
-    </div>
-  ),
-};
-
 export const WithBackButton = {
   args: {
     title: 'Choose Time',

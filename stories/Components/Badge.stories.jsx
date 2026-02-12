@@ -30,7 +30,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Default = {
   args: { children: '3 articles' },

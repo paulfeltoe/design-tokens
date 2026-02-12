@@ -6,6 +6,13 @@ export default {
   title: 'Components/Toggle',
   component: Toggle,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A switch for binary on/off settings. The effect should be immediate — no form submission required.',
+      },
+    },
+  },
   argTypes: {
     checked: {
       control: 'boolean',
@@ -29,7 +36,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Off = {
   args: { checked: false, label: 'Off' },

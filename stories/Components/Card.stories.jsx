@@ -51,7 +51,6 @@ export default {
   decorators: [(Story) => <div style={{ maxWidth: 320 }}><Story /></div>],
 };
 
-export const Playground = {};
 
 export const Elevated = {
   args: { variant: 'elevated', title: 'Elevated Card', subtitle: 'Default with shadow' },

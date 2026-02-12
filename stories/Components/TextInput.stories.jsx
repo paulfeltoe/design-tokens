@@ -6,6 +6,13 @@ export default {
   title: 'Components/TextInput',
   component: TextInput,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A labeled text field for collecting free-form user input. Supports multiple HTML input types and inline error messaging.',
+      },
+    },
+  },
   argTypes: {
     label: {
       control: 'text',
@@ -39,7 +46,6 @@ export default {
   decorators: [(Story) => <div style={{ maxWidth: 360 }}><Story /></div>],
 };
 
-export const Playground = {};
 
 export const Default = {
   args: { label: 'Email Address', placeholder: 'you@example.com', type: 'email' },

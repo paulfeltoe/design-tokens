@@ -40,7 +40,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Small = {
   args: { size: 'sm', name: 'Jane Doe' },
