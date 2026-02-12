@@ -5,6 +5,7 @@ import { ProgressSteps, Button } from '../../src/components';
 export default {
   title: 'Components/ProgressSteps',
   component: ProgressSteps,
+  tags: ['autodocs'],
   argTypes: {
     currentStep: {
       control: { type: 'number', min: 0, max: 5 },

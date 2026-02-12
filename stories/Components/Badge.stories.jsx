@@ -5,6 +5,14 @@ import { Badge } from '../../src/components';
 export default {
   title: 'Components/Badge',
   component: Badge,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Small labels for status, categories, or metadata. Six semantic color variants that each map to a specific meaning.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

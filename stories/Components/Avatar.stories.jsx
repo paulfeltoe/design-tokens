@@ -5,6 +5,14 @@ import { Avatar } from '../../src/components';
 export default {
   title: 'Components/Avatar',
   component: Avatar,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Displays a user or provider photo, falling back to initials when no image is available. Always circular, always has a fixed size.',
+      },
+    },
+  },
   argTypes: {
     size: {
       control: 'select',

@@ -5,6 +5,7 @@ import { IconButton } from '../../src/components';
 export default {
   title: 'Components/IconButton',
   component: IconButton,
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',

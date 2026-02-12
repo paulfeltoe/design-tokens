@@ -5,6 +5,7 @@ import { ListItem, Avatar, Badge } from '../../src/components';
 export default {
   title: 'Components/ListItem',
   component: ListItem,
+  tags: ['autodocs'],
   argTypes: {
     title: {
       control: 'text',

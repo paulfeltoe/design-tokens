@@ -5,6 +5,14 @@ import { Button } from '../../src/components';
 export default {
   title: 'Components/Button',
   component: Button,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Buttons trigger actions. Use the right variant for the context: primary for the main CTA, secondary for supporting actions, and specialized variants for domain-specific UI like scheduling.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

@@ -4,10 +4,11 @@ import { PageHeader, Section, Tip, Guidelines, CodeBlock } from '../shared/DocBl
 
 export default {
   title: 'Components/Badge',
+  tags: ['!autodocs'],
   parameters: { layout: 'padded' },
 };
 
-export const Docs = {
+export const UsageGuide = {
   render: () => (
     <div style={{ maxWidth: 720 }}>
       <PageHeader

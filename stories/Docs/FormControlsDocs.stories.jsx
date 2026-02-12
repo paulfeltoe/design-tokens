@@ -7,7 +7,7 @@ export default {
   parameters: { layout: 'padded' },
 };
 
-export const Docs = {
+export const UsageGuide = {
   render: () => (
     <div style={{ maxWidth: 720 }}>
       <PageHeader

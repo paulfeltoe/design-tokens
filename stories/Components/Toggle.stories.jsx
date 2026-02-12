@@ -5,6 +5,7 @@ import { Toggle } from '../../src/components';
 export default {
   title: 'Components/Toggle',
   component: Toggle,
+  tags: ['autodocs'],
   argTypes: {
     checked: {
       control: 'boolean',
