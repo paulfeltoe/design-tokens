@@ -53,7 +53,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Primary = {
   args: { variant: 'primary', children: 'Continue' },

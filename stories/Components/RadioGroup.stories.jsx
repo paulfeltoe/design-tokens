@@ -40,7 +40,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const YesNo = {
   args: {

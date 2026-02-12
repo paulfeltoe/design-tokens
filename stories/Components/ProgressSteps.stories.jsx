@@ -19,7 +19,6 @@ export default {
   decorators: [(Story) => <div style={{ maxWidth: 520 }}><Story /></div>],
 };
 
-export const Playground = {};
 
 export const StepOne = {
   args: { currentStep: 0 },

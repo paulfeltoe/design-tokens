@@ -30,7 +30,6 @@ export default {
   decorators: [(Story) => <div style={{ maxWidth: 420 }}><Story /></div>],
 };
 
-export const Playground = {};
 
 export const Today = {
   args: { activeItem: 'today' },

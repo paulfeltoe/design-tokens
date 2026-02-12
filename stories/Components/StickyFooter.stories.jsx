@@ -15,19 +15,6 @@ export default {
   },
 };
 
-export const Playground = {
-  render: () => (
-    <div style={{ height: 400, position: 'relative', background: '#FFFCFA' }}>
-      <div style={{ padding: 20 }}>
-        <p style={{ color: '#212020' }}>Page content above the footer.</p>
-      </div>
-      <StickyFooter position="absolute">
-        <Button fullWidth>Continue</Button>
-      </StickyFooter>
-    </div>
-  ),
-};
-
 export const SingleButton = {
   render: () => (
     <div style={{ height: 400, position: 'relative', background: '#FFFCFA' }}>

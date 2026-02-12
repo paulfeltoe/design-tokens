@@ -29,7 +29,6 @@ export default {
   decorators: [(Story) => <div style={{ maxWidth: 375 }}><Story /></div>],
 };
 
-export const Playground = {};
 
 export const BackAndClose = {
   args: {

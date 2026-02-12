@@ -29,7 +29,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Unchecked = {
   args: { checked: false, label: 'Unchecked' },

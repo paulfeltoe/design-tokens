@@ -29,7 +29,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Default = {
   args: { children: 'Physical Health' },

@@ -41,7 +41,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Ghost = {
   args: { variant: 'ghost', label: 'Back', children: '\u2039' },

@@ -29,7 +29,6 @@ export default {
   },
 };
 
-export const Playground = {};
 
 export const Off = {
   args: { checked: false, label: 'Off' },

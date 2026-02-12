@@ -39,7 +39,6 @@ export default {
   decorators: [(Story) => <div style={{ maxWidth: 360 }}><Story /></div>],
 };
 
-export const Playground = {};
 
 export const Default = {
   args: { label: 'Email Address', placeholder: 'you@example.com', type: 'email' },
