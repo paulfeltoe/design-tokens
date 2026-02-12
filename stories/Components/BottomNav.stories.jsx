@@ -13,6 +13,7 @@ const defaultItems = [
 export default {
   title: 'Components/BottomNav',
   component: BottomNav,
+  tags: ['autodocs'],
   argTypes: {
     activeItem: {
       control: 'select',

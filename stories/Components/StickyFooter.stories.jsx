@@ -4,8 +4,14 @@ import { StickyFooter, Button } from '../../src/components';
 export default {
   title: 'Components/StickyFooter',
   component: StickyFooter,
+  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: 'A fixed or absolute-positioned footer with a gradient fade from transparent to white. Used for persistent CTA buttons at the bottom of pages and sheets.',
+      },
+    },
   },
 };
 

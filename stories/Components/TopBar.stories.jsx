@@ -5,6 +5,14 @@ import { TopBar } from '../../src/components';
 export default {
   title: 'Components/TopBar',
   component: TopBar,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Header bar for pages and modals. 65px height with centered title and optional back/close navigation actions. Every screen should have a TopBar.',
+      },
+    },
+  },
   argTypes: {
     title: {
       control: 'text',

@@ -5,6 +5,14 @@ import { Card, Badge, Avatar } from '../../src/components';
 export default {
   title: 'Components/Card',
   component: Card,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Cards group related content into containers. Use the right variant for the context: elevated for prominent content, outlined for lists, and specialized variants for appointments and providers.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

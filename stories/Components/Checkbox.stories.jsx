@@ -5,6 +5,7 @@ import { Checkbox } from '../../src/components';
 export default {
   title: 'Components/Checkbox',
   component: Checkbox,
+  tags: ['autodocs'],
   argTypes: {
     checked: {
       control: 'boolean',

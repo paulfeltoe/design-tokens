@@ -5,6 +5,7 @@ import { BottomSheet, Button, ListItem } from '../../src/components';
 export default {
   title: 'Components/BottomSheet',
   component: BottomSheet,
+  tags: ['autodocs'],
   argTypes: {
     open: {
       control: 'boolean',
@@ -24,6 +25,11 @@ export default {
   },
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: 'A modal overlay that slides up from the bottom of the viewport. Used for focused tasks like selections, forms, or confirmations. Includes a 65px header with optional back/close buttons.',
+      },
+    },
   },
 };
 

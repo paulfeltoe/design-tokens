@@ -5,6 +5,7 @@ import { TextInput } from '../../src/components';
 export default {
   title: 'Components/TextInput',
   component: TextInput,
+  tags: ['autodocs'],
   argTypes: {
     label: {
       control: 'text',

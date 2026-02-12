@@ -5,6 +5,7 @@ import { Chip } from '../../src/components';
 export default {
   title: 'Components/Chip',
   component: Chip,
+  tags: ['autodocs'],
   argTypes: {
     selected: {
       control: 'boolean',

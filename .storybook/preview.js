@@ -19,7 +19,7 @@ const preview = {
           "Components",
           [
             "*",
-            ["Docs", "*"],
+            ["Docs", "Usage Guide", "*"],
           ],
         ],
       },

@@ -4,10 +4,11 @@ import { PageHeader, Section, Tip, Warning, Guidelines, CodeBlock } from '../sha
 
 export default {
   title: 'Components/BottomSheet',
+  tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
 };
 
-export const Docs = {
+export const UsageGuide = {
   render: () => (
     <div style={{ padding: 32, maxWidth: 720 }}>
       <PageHeader

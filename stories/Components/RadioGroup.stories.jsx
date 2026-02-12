@@ -5,6 +5,7 @@ import { RadioGroup } from '../../src/components';
 export default {
   title: 'Components/RadioGroup',
   component: RadioGroup,
+  tags: ['autodocs'],
   argTypes: {
     label: {
       control: 'text',
