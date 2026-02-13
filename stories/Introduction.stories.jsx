@@ -37,7 +37,11 @@ export const GettingStarted = () => (
       <div style={cardStyle}>
         <div style={{ fontWeight: 600, marginBottom: 4 }}>Primitives</div>
         <p style={{ fontSize: 14, color: '#525252', margin: 0, lineHeight: 1.6 }}>
-          Low-level layout building blocks: <strong>Box</strong>, <strong>Stack</strong>, <strong>Inline</strong>, <strong>Grid</strong>, <strong>Text</strong>, and <strong>Divider</strong>.
+          Low-level building blocks across four categories:
+          <strong> Layout</strong> (Box, Flex, Stack, Inline, Grid, Container, Spacer, Divider),
+          <strong> Typography</strong> (Text, Heading, Label, Caption, Code),
+          <strong> Surface</strong> (Surface, Card, Panel, Overlay, Backdrop), and
+          <strong> Interaction</strong> (Pressable, Clickable, FocusRing, Transition, VisuallyHidden).
           Use these to compose layouts without writing custom CSS.
         </p>
       </div>
@@ -77,8 +81,8 @@ const gap     = tokens.spacing['4'].$value;          // "16px"`}
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
         <tbody>
           {[
-            ['Colors, Spacing, Typography, ...', 'Token reference pages with visual previews and copy-ready values'],
-            ['Primitives', 'Layout components (Box, Stack, Grid, etc.) with prop examples'],
+            ['Design Tokens', 'Token reference pages (Colors, Spacing, Typography, Borders, Shadows, Transitions) with visual previews and copy-ready values'],
+            ['Primitives', 'Layout, typography, surface, and interaction building blocks with prop examples'],
             ['Components > Docs', 'Auto-generated API reference: props table, controls, all story variants'],
             ['Components > Usage Guide', 'Design guidelines: when to use each variant, do\'s and don\'ts, pairing patterns'],
             ['Components > Stories', 'Interactive playground and individual variant stories'],

@@ -21,6 +21,10 @@
   - `v0/v0-context.md` — the AI instruction document (sections: Color System, Spacing, Typography, Borders, Shadows, Transitions, Z-Index, Breakpoints, and the Rules list)
 - These two files are the external-facing contract for AI tools (like V0) consuming the design system.
 
+## Keep Getting Started Page in Sync
+
+- When primitives, components, tokens, or story structure change, update the **Getting Started** page in `stories/Introduction.stories.jsx` so its "What's inside" section and organization table reflect the current state of the design system.
+
 ## Source of Truth
 
 - `design-tokens.json` is the canonical DTCG-format source. All other files (`v0/globals.css`, `src/tokens/tokens.js`, stories) are derived from it.
