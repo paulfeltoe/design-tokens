@@ -9,18 +9,12 @@ const preview = {
       storySort: {
         order: [
           "Introduction",
-          "Colors",
-          "Spacing",
-          "Typography",
-          "Borders",
-          "Shadows",
-          "Transitions",
+          "Design Tokens",
           "Primitives",
           "Components",
-          [
-            "*",
-            ["Docs", "Usage Guide", "*"],
-          ],
+          ["*", ["Docs", "Usage Guide", "*"]],
+          "Patterns",
+          "Sections",
         ],
       },
     },
